@@ -21,6 +21,8 @@ public:
 
 	//Functions
 	void readCustomers();
+	void readAccounts();
+	void readTransactions();
 
 private:
 	vector<Customer> customers;
