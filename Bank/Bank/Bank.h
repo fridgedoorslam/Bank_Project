@@ -20,9 +20,9 @@ public:
 	void setAccount(Account);
 
 	//Functions
-	void readCustomers();
-	void readAccounts();
-	void readTransactions();
+	//void readCustomers();
+	//void readAccounts();
+	//void readTransactions();
 
 private:
 	vector<Customer> customers;

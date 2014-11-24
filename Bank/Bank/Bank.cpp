@@ -15,6 +15,8 @@ void Bank::setAccount(Account ACCOUNT) { accounts.push_back(ACCOUNT); }
 
 //Function to read customers file and store 
 //information into customers vector
+
+/*
 void Bank::readCustomers() {
 	ifstream customer_file;
 	customer_file.open("customers_input.txt");
@@ -43,3 +45,4 @@ void Bank::readTransactions() {
 		//Do some shit here
 	}
 }
+*/

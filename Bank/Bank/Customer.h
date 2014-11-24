@@ -3,48 +3,40 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 #include "Account.h"
 
-using namespace std;
 
 class Customer
 {
 public:
 	//Constructors
-	Customer::Customer() {
-
-	}
-	Customer(int ID, int SSN, string FIRST, string LAST, string ADDRESS) {
-		customer_id = ID;
-		social_security = SSN;
-		first_name = FIRST;
-		last_name = LAST;
-		address = ADDRESS;
-	}
+	Customer();
+	Customer(int, int, std::string, std::string, std::string);
 
 	//Getters
 	int getId() const;
 	int getSocial() const;
-	string getFirst() const;
-	string getLast() const;
-	string getAddress() const;
-	vector<Account> getAccounts() const;
+	std::string getFirst() const;
+	std::string getLast() const;
+	std::string getAddress() const;
+	std::vector<Account*> getAccounts();
 
 	//Setters
 	void setId(int);
 	void setSocial(int);
-	void setFirst(string);
-	void setLast(string);
-	void setAddress(string);
-	void setAccout(Account);
+	void setFirst(std::string);
+	void setLast(std::string);
+	void setAddress(std::string);
+	void setAccout(Account*);
 
 	//Operators
-	friend istream& operator>>(istream&, Customer&);
+	friend std::istream& operator>>(std::istream&, Customer&);
 
 private:
 	int customer_id, social_security;
-	string first_name, last_name, address;
-	vector<Account> accounts;
+	std::string first_name, last_name, address;
+	std::vector<Account*> pAccounts;
 };
 
 #endif

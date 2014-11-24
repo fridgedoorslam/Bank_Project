@@ -1,4 +1,3 @@
-#include <string>
 #include "Customer.h"
 
 //Default constructor
@@ -23,7 +22,7 @@ string Customer::getLast() const { return last_name; }
 
 string Customer::getAddress() const { return address; }
 
-vector<Account> Customer::getAccounts() const { return accounts; }
+vector<Account*> Customer::getAccounts() { return pAccounts; }
 
 //Setters
 void Customer::setId(int ID) { customer_id = ID; }
@@ -36,7 +35,7 @@ void Customer::setLast(string LAST) { last_name = LAST; }
 
 void Customer::setAddress(string ADDRESS) { address = ADDRESS; }
 
-void Customer::setAccout(Account ACCOUNT) { accounts.push_back(ACCOUNT); }
+void Customer::setAccout(Account* ACCOUNT) { pAccounts.push_back(ACCOUNT); }
 
 //Operators
 istream& operator>>(istream& INPUT, Customer& CUSTOMER) {

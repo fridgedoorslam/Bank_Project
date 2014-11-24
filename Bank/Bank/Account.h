@@ -3,14 +3,12 @@
 
 #include <vector>
 #include "Transaction.h"
-#include "Customer.h"
 #include "Date.h"
 
-using namespace std;
+
+class Customer;
 
 
-
-// hi
 class Account
 {
 public:
@@ -20,23 +18,23 @@ public:
 	//Getters
 	int getNumber() const;
 	double getBalance();
-	Customer getOwner() const;
 	Date getDate() const;
-	vector<Transaction> getTransactions() const;
+	std::vector<Transaction*> getTransactions();
+	std::vector<Customer*> getOwners();
 
 	//Setters
 	void setNumber(int);
 	void setBalance(double);
-	void setOwner(Customer);
+	void setOwner(Customer*);
 	void setDate(Date);
-	void setTransaction(Transaction);
+	void setTransaction(Transaction*);
 
 private:
 	int account_number;
 	double balance;
-	Customer owner;
 	Date date_opened;
-	vector<Transaction> transactions;
+	std::vector<Transaction*> pTransactions;
+	std::vector<Customer*> pOwners;
 };
 
 #endif
