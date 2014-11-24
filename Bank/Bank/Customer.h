@@ -11,8 +11,16 @@ class Customer
 {
 public:
 	//Constructors
-	Customer();
-	Customer(int, int, string, string, string);
+	Customer::Customer() {
+
+	}
+	Customer(int ID, int SSN, string FIRST, string LAST, string ADDRESS) {
+		customer_id = ID;
+		social_security = SSN;
+		first_name = FIRST;
+		last_name = LAST;
+		address = ADDRESS;
+	}
 
 	//Getters
 	int getId() const;
