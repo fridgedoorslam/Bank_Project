@@ -58,5 +58,8 @@
     <Text Include="transactions_input.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="accounts_input.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
