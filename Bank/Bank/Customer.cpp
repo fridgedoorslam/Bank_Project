@@ -37,10 +37,23 @@ void Customer::setAddress(string ADDRESS) { address = ADDRESS; }
 
 void Customer::setAccout(Account* ACCOUNT) { pAccounts.push_back(ACCOUNT); }
 
+
 //Operators
-istream& operator>>(istream& INPUT, Customer& CUSTOMER) {
+
+//Input operator
+istream& operator>>(istream& INPUT, vector<Customer*>& vector) {
+	int new_id, new_ssn;
+	string new_first, new_last, new_address;
+	INPUT >> new_id >> new_ssn >> new_first >> new_last;
+	getline(INPUT, new_address);
+	Customer* new_customer = new Customer(new_id, new_ssn, new_first, new_last, new_address);
+	vector.push_back(new_customer);
+	return INPUT;
+	//Old Logic
+	/*
 	INPUT >> CUSTOMER.customer_id >> CUSTOMER.social_security >>
 		CUSTOMER.first_name >> CUSTOMER.last_name;
 	getline(INPUT, CUSTOMER.address);
 	return INPUT;
+	*/
 }

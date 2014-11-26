@@ -4,29 +4,30 @@
 #include "Account.h"
 #include "Customer.h"
 #include <vector>
-#include <iostream>
 
-using namespace std;
 
 class Bank
 {
 public:
 	//Getters
-	vector<Customer> getCustomers();
-	vector<Account> getAccounts();
+	const std::vector<Customer*>& getCustomers() const; //Changed to const for iter
+	std::vector<Account*> getAccounts();
 
 	//Setters
-	void setCustomer(Customer);
-	void setAccount(Account);
+	void setCustomer(Customer*);
+	void setAccount(Account*);
 
-	//Functions
-	//void readCustomers();
+	//Read Functions
+	void readCustomers();
 	//void readAccounts();
 	//void readTransactions();
 
+	//Creation Functions
+	void new_customer_menu();
+
 private:
-	vector<Customer> customers;
-	vector<Account> accounts;
+	std::vector<Customer*> pCustomers;
+	std::vector<Account*> pAccounts;
 };
 
 #endif

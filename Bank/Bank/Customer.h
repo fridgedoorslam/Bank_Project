@@ -5,7 +5,9 @@
 #include <vector>
 #include <iostream>
 #include "Account.h"
+#include "Bank.h"
 
+class Bank;
 
 class Customer
 {
@@ -31,7 +33,7 @@ public:
 	void setAccout(Account*);
 
 	//Operators
-	friend std::istream& operator>>(std::istream&, Customer&);
+	friend std::istream& operator>>(std::istream&, std::vector<Customer*>&);
 
 private:
 	int customer_id, social_security;
