@@ -12,7 +12,7 @@ int main() {
 	bank.readCustomers();
 	//bank.readAccount();
 	//bank.readTransactions();
-	bank.new_customer_menu();
+	bank.main_menu();
 	vector<Customer*>::const_iterator iter;
 	for (iter = bank.getCustomers().begin();
 		iter != bank.getCustomers().end(); ++iter) {

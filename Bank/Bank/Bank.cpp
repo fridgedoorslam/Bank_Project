@@ -48,8 +48,36 @@ void Bank::readTransactions() {
 }
 */
 
-void Bank::new_customer_menu() {
-	cout << "Here you can create a new customer." << endl << endl;
+
+//Menu Functions
+void Bank::main_menu() {
+	int option = get_input();
+	switch (option) {
+	case 0:
+		exit(0);
+	case 1:
+		customer_input_menu();
+	case 2:
+		account_input_menu();
+	case 3:
+		transaction_input_menu();
+	}
+}
+
+//Get Input
+int Bank::get_input() {
+	int option;
+	cout << "--Main Menu--" << endl;
+	cout << "Enter 1 to add a new customer." << endl;
+	cout << "Enter 2 to add a new account." << endl;
+	cout << "Enter 3 to add a transaction to an existing account." << endl;
+	cout << "Enter 0 to exit application." << endl;
+	cin >> option;
+	return option;
+}
+
+void Bank::customer_input_menu() {
+	cout << "--Customer Input Menu--" << endl << endl;
 	int new_id, new_ssn;
 	string new_first, new_last, new_address;
 	cout << "First Name: "; cin >> new_first;
@@ -60,4 +88,18 @@ void Bank::new_customer_menu() {
 	cout << "Customer ID Number: "; cin >> new_id;
 	Customer* new_customer = new Customer(new_id, new_ssn, new_first, new_last, new_address);
 	pCustomers.push_back(new_customer);
+}
+
+void Bank::transaction_input_menu() {
+	cout << "Here you can input a transaction to an account." << endl;
+	system("pause");
+	cout << endl << endl << endl;
+	main_menu();
+}
+
+void Bank::account_input_menu() {
+	cout << "Here you can add and account." << endl;
+	system("pause");
+	cout << endl << endl << endl;
+	main_menu();
 }

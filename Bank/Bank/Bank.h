@@ -23,7 +23,11 @@ public:
 	//void readTransactions();
 
 	//Creation Functions
-	void new_customer_menu();
+	void main_menu();
+	int get_input();
+	void customer_input_menu();
+	void account_input_menu();
+	void transaction_input_menu();
 
 private:
 	std::vector<Customer*> pCustomers;
