@@ -13,13 +13,13 @@ int main() {
 	//bank.readAccount();
 	//bank.readTransactions();
 	bank.main_menu();
-	vector<Customer*>::const_iterator iter;
+	/*vector<Customer*>::const_iterator iter;
 	for (iter = bank.getCustomers().begin();
 		iter != bank.getCustomers().end(); ++iter) {
 		cout << (*iter)->getFirst() << endl;
-	}
+	}*/
 
-	//Call the main menu function
+	//Call the main menu kfunction
 	//Main menu will give other menu options to print transactions,
 	//add transactions, exit, do other cool shit...
 	//Each option function that mainMenu() calls will

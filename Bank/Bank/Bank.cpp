@@ -61,6 +61,10 @@ void Bank::main_menu() {
 		account_input_menu();
 	case 3:
 		transaction_input_menu();
+	case 4:
+		customer_info_menu();
+	case 5:
+		print_customer_statements();
 	}
 }
 
@@ -71,11 +75,34 @@ int Bank::get_input() {
 	cout << "Enter 1 to add a new customer." << endl;
 	cout << "Enter 2 to add a new account." << endl;
 	cout << "Enter 3 to add a transaction to an existing account." << endl;
+	cout << "Enter 4 to view customer Information" << endl;
+	cout << "Enter 5 to print customer account statements" << endl;
 	cout << "Enter 0 to exit application." << endl;
 	cin >> option;
 	return option;
 }
+// Prints all customer holders
+void Bank::customer_info_menu() {
+	Bank bank = Bank();
+	cout << "--Customer Information Menu--" << endl << endl;
+	bank.readCustomers();
+	vector<Customer*>::const_iterator iter;
+	for (iter = bank.getCustomers().begin();
+		iter != bank.getCustomers().end(); ++iter) {
+		// We could probably overload an operator for this long bit
+		cout << (*iter)->getId() << " " << (*iter)->getSocial() << " " << (*iter)->getFirst() << " " << (*iter)->getLast() << (*iter)->getAddress() << endl;
 
+	}
+}
+
+void Bank::print_customer_statements() {
+	// Here you can print single accounts 
+	cout << "--Print a Customer Account--" << endl;
+	cout << "Enter Account Number: " << endl;
+	// if this account list customer's account
+	// on selection print that account (CD, Checking, Savings)
+
+}
 void Bank::customer_input_menu() {
 	cout << "--Customer Input Menu--" << endl << endl;
 	int new_id, new_ssn;
@@ -89,6 +116,7 @@ void Bank::customer_input_menu() {
 	Customer* new_customer = new Customer(new_id, new_ssn, new_first, new_last, new_address);
 	pCustomers.push_back(new_customer);
 }
+
 
 void Bank::transaction_input_menu() {
 	cout << "Here you can input a transaction to an account." << endl;

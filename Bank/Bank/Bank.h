@@ -28,6 +28,8 @@ public:
 	void customer_input_menu();
 	void account_input_menu();
 	void transaction_input_menu();
+	void customer_info_menu();
+	void print_customer_statements();
 
 private:
 	std::vector<Customer*> pCustomers;
