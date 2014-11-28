@@ -15,8 +15,7 @@ void Bank::setAccount(Account* ACCOUNT) { pAccounts.push_back(ACCOUNT); }
 
 //Functions
 
-//Function to read customers file and store 
-//information into customers vector
+//Function to read customers file and store information into customers vector
 void Bank::readCustomers() {
 	ifstream customer_file("customer_input.txt");
 	if (!customer_file) {
@@ -27,7 +26,7 @@ void Bank::readCustomers() {
 	}
 }
 
-
+//Read account file and store information into accounts vector
 void Bank::readAccounts() {
 	ifstream account_file("accounts_input.txt");
 	if (!account_file) {
@@ -37,6 +36,7 @@ void Bank::readAccounts() {
 		account_file >> pAccounts;
 	}
 }
+
 /*
 void Bank::readTransactions() {
 	ifstream transaction_file;
@@ -55,6 +55,8 @@ void Bank::main_menu() {
 	cout << "Enter 1 to add a new customer." << endl;
 	cout << "Enter 2 to add a new account." << endl;
 	cout << "Enter 3 to add a transaction to an existing account." << endl;
+	cout << "Enter 4 to view customer Information" << endl;
+	cout << "Enter 5 to print customer account statements" << endl;
 	cout << "Enter 0 to exit application." << endl;
 	int option = get_input();
 	switch (option) {
@@ -66,6 +68,10 @@ void Bank::main_menu() {
 		account_input_menu();
 	case 3:
 		transaction_input_menu();
+	case 4:
+		customer_info_menu();
+	case 5:
+		print_customer_statements();
 	}
 }
 
@@ -131,4 +137,26 @@ void Bank::account_input_menu() {
 	case 1:
 		account_input_menu();
 	}
+}
+
+//Customer Info
+void Bank::customer_info_menu() {
+	cout << "--Customer Information Menu--" << endl << endl;
+	vector<Customer*>::const_iterator iter;
+	for (iter = pCustomers.begin();
+		iter != pCustomers.end(); ++iter) {
+		// We could probably overload an operator for this long bit
+		cout << (*iter)->getId() << " " << (*iter)->getSocial() << " " <<
+			(*iter)->getFirst() << " " << (*iter)->getLast() << (*iter)->getAddress() << endl;
+	}
+	main_menu();
+}
+
+//Print Customer Statements
+void Bank::print_customer_statements() {
+	// Here you can print single accounts 
+	cout << "--Print a Customer Account--" << endl;
+	cout << "Enter Account Number: " << endl;
+	// if this account list customer's account
+	// on selection print that account (CD, Checking, Savings)
 }
