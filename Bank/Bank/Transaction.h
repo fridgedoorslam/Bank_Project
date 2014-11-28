@@ -13,12 +13,14 @@ public:
 	Transaction(int, const std::string, double, const Date&, std::string);
 
 	//Getters
+	int getAccount() const;
 	std::string getType() const;
 	double getAmount() const;
 	const Date& getDate() const;
 	std::string getInfo() const;
 
 	//Setters
+	void setAccount(int);
 	void setType(const std::string);
 	void setAmount(double);
 	void setDate(const Date&);

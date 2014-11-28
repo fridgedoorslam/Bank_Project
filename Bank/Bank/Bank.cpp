@@ -50,6 +50,21 @@ void Bank::readTransactions() {
 	while (!transaction_file.eof()) {
 		transaction_file >> pTransactions;
 	}
+	//Loop through transaction pointers and store into proper account
+	vector<Transaction*>::const_iterator transaction_iter;
+	vector<Account*>::const_iterator account_iter;
+	for (transaction_iter = pTransactions.begin();
+		transaction_iter != pTransactions.end(); ++transaction_iter) {
+		int transaction_account = (*transaction_iter)->getAccount();
+
+		for (account_iter = pAccounts.begin();
+			account_iter != pAccounts.end(); ++account_iter) {
+			int account = (*account_iter)->getNumber();
+			if (account == transaction_account) {
+				(*account_iter)->setTransaction(*transaction_iter);
+			}
+		}
+	}
 }
 
 
@@ -179,14 +194,30 @@ void Bank::customer_info_menu() {
 //Print Customer Statements
 void Bank::print_customer_statements() {
 	int account_number;
-	cout << "--Print a Customer Account--" << endl;
-	cout << "Enter Account Number: " << endl;
+	cout << "--Print a Customer Statement--" << endl;
+	cout << "Enter Account Number: ";
 	cin >> account_number;
-	vector<Account*>::const_iterator iter;
-	for (iter = pAccounts.begin();
-		iter != pAccounts.end(); ++iter) {
-
+	vector<Account*>::const_iterator account_iter;
+	vector<Transaction*>::const_iterator transaction_iter;
+	for (account_iter = pAccounts.begin();
+		account_iter != pAccounts.end(); ++account_iter) {
+		if ((*account_iter)->getNumber() == account_number) {
+			//for each transaction, cout it!!!
+			for (transaction_iter = (*account_iter)->getTransactions().begin();
+				transaction_iter != (*account_iter)->getTransactions().end();
+				++transaction_iter) {
+				cout << (*transaction_iter)->getDate();
+				if ((*transaction_iter)->getType() == "d") {
+					cout << " Deposit, $" << (*transaction_iter)->getAmount() << 
+						" from" << (*transaction_iter)->getInfo() << "." << endl;
+				}
+				else {
+					cout << " Withdrawal, $" << (*transaction_iter)->getAmount() << 
+						" to" << (*transaction_iter)->getInfo() << "." << endl;
+				}
+			}
+		}
 	}
-	// if this account list customer's account
-	// on selection print that account (CD, Checking, Savings)
+	cout << endl;
+	main_menu();
 }

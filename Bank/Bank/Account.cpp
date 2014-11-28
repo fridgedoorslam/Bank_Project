@@ -18,7 +18,7 @@ vector<Customer*> Account::getOwners() { return pOwners; }
 
 Date Account::getDate() const { return opening_date; }
 
-vector<Transaction*> Account::getTransactions() { return pTransactions; }
+const vector<Transaction*>& Account::getTransactions() const { return pTransactions; } //Changed to const for iter
 
 //Setters
 void Account::setNumber(int NUMBER) { account_number = NUMBER; }

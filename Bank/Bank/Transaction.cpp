@@ -16,6 +16,8 @@ Transaction::Transaction(int number, const string Type, double Amount, const Dat
 }
 
 //Getters
+int Transaction::getAccount() const { return account_number; }
+
 string Transaction::getType() const { return type; }
 
 double Transaction::getAmount() const { return amount; }
@@ -25,6 +27,8 @@ const Date& Transaction::getDate() const { return transDate; }
 string Transaction::getInfo() const { return info; }
 
 //Setters
+void Transaction::setAccount(int Account) { account_number = Account; }
+
 void Transaction::setType(const string Type) { type = Type; }
 
 void Transaction::setAmount(double Amount) { amount = Amount; }
@@ -50,10 +54,10 @@ istream& operator>>(istream& input, vector<Transaction*>& vector) {
 ostream& operator<<(ostream& output, const Transaction& transaction) {
 	output << transaction.getDate();
 	if (transaction.getType() == "d") {
-		cout << " Deposit, $" << transaction.amount << " from" << transaction.info << ".";
+		cout << " Deposit, $" << transaction.getAmount() << " from" << transaction.getInfo() << ".";
 	}
 	else {
-		cout << " Withdrawal, $" << transaction.amount << " to" << transaction.info << ".";
+		cout << " Withdrawal, $" << transaction.getAmount() << " to" << transaction.getInfo() << ".";
 	}
 	return output;
 }
