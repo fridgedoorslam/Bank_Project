@@ -139,10 +139,18 @@ void Bank::transaction_input_menu() {
 	cout << "Transaction type (d or w): "; cin >> type;
 	cout << "Amount "; cin >> amount;
 	cout << "Date of transaction: "; cin >> date;
-	cout << "Description: ";
-	getline(cin, info);
+	cout << "Description: "; getline(cin, info); getline(cin, info);
 	Transaction* new_transaction = new Transaction(account, type, amount, date, info);
 	pTransactions.push_back(new_transaction);
+
+	//Loop through accounts and store transaction pointer into proper one
+	vector<Account*>::const_iterator account_iter;
+	for (account_iter = pAccounts.begin(); account_iter != pAccounts.end(); ++account_iter) {
+		if ((*account_iter)->getNumber() == account) {
+			(*account_iter)->setTransaction(new_transaction);
+		}
+	}
+
 	cout << "Successfully added transaction." << endl;
 	cout << "Enter 1 to add another transaction." << endl;
 	cout << "Enter 0 to return to the main menu." << endl;
@@ -209,11 +217,11 @@ void Bank::print_customer_statements() {
 				cout << (*transaction_iter)->getDate();
 				if ((*transaction_iter)->getType() == "d") {
 					cout << " Deposit, $" << (*transaction_iter)->getAmount() << 
-						" from" << (*transaction_iter)->getInfo() << "." << endl;
+						" from " << (*transaction_iter)->getInfo() << "." << endl;
 				}
 				else {
 					cout << " Withdrawal, $" << (*transaction_iter)->getAmount() << 
-						" to" << (*transaction_iter)->getInfo() << "." << endl;
+						" to " << (*transaction_iter)->getInfo() << "." << endl;
 				}
 			}
 		}

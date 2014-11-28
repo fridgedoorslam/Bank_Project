@@ -45,6 +45,7 @@ istream& operator>>(istream& input, vector<Transaction*>& vector) {
 	double amount;
 	Date date;
 	input >> account >> type >> amount >> date;
+	input >> std::ws;
 	getline(input, info);
 	Transaction* new_transaction = new Transaction(account, type, amount, date, info);
 	vector.push_back(new_transaction);
