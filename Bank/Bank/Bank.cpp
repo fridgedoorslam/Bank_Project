@@ -17,7 +17,7 @@ void Bank::setAccount(Account* Account) { pAccounts.push_back(Account); }
 void Bank::setTransaction(Transaction* Transaction){ pTransactions.push_back(Transaction); }
 
 
-//Functions
+//File Reading Functions
 
 //Read customers file and store information into bank's customers vector
 void Bank::readCustomers() {
@@ -70,6 +70,8 @@ void Bank::readTransactions() {
 
 
 //Menu Functions
+
+//Main Menu
 void Bank::main_menu() {
 	cout << "--Main Menu--" << endl;
 	cout << "Enter 1 to add a new customer." << endl;
@@ -95,14 +97,7 @@ void Bank::main_menu() {
 	}
 }
 
-//Get Input
-int Bank::get_input() {
-	int option;
-	cin >> option;
-	return option;
-}
-
-//Customer Input
+//Customer Input Menu
 void Bank::customer_input_menu() {
 	cout << "--Customer Input Menu--" << endl << endl;
 	int new_id, new_ssn;
@@ -128,7 +123,7 @@ void Bank::customer_input_menu() {
 	}
 }
 
-//Transaction Input
+//Transaction Input Menu
 void Bank::transaction_input_menu() {
 	cout << "--Transaction Input Menu--" << endl << endl;
 	int account;
@@ -163,7 +158,7 @@ void Bank::transaction_input_menu() {
 	}
 }
 
-//Account Input
+//Account Input Menu
 void Bank::account_input_menu() {
 	cout << "--Account Input Menu--" << endl << endl;
 	int number;
@@ -186,7 +181,7 @@ void Bank::account_input_menu() {
 	}
 }
 
-//Customer Info
+//Customer Info Menu
 void Bank::customer_info_menu() {
 	cout << "--Customer Information Menu--" << endl << endl;
 	vector<Customer*>::const_iterator iter;
@@ -228,4 +223,15 @@ void Bank::print_customer_statements() {
 	}
 	cout << endl;
 	main_menu();
+}
+
+
+
+//Other Functions
+
+//Get Input
+int Bank::get_input() {
+	int option;
+	cin >> option;
+	return option;
 }
