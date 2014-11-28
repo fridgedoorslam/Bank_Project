@@ -13,7 +13,7 @@ class Account
 {
 public:
 	//Constructor
-	Account();
+	Account(int, double, Date);
 
 	//Getters
 	int getNumber() const;
@@ -29,10 +29,13 @@ public:
 	void setDate(Date);
 	void setTransaction(Transaction*);
 
+	//Operators
+	friend std::istream& operator>>(std::istream&, std::vector<Account*>&);
+
 private:
 	int account_number;
-	double balance;
-	Date date_opened;
+	double opening_balance;
+	Date opening_date;
 	std::vector<Transaction*> pTransactions;
 	std::vector<Customer*> pOwners;
 };

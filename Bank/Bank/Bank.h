@@ -11,7 +11,7 @@ class Bank
 public:
 	//Getters
 	const std::vector<Customer*>& getCustomers() const; //Changed to const for iter
-	std::vector<Account*> getAccounts();
+	const std::vector<Account*>& getAccounts() const; //Changed to const for iter
 
 	//Setters
 	void setCustomer(Customer*);
@@ -19,7 +19,7 @@ public:
 
 	//Read Functions
 	void readCustomers();
-	//void readAccounts();
+	void readAccounts();
 	//void readTransactions();
 
 	//Creation Functions

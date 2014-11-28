@@ -10,13 +10,13 @@ int main() {
 
 	//Read in all the shit
 	bank.readCustomers();
-	//bank.readAccount();
+	bank.readAccounts();
 	//bank.readTransactions();
 	bank.main_menu();
-	vector<Customer*>::const_iterator iter;
-	for (iter = bank.getCustomers().begin();
-		iter != bank.getCustomers().end(); ++iter) {
-		cout << (*iter)->getFirst() << endl;
+	vector<Account*>::const_iterator iter;
+	for (iter = bank.getAccounts().begin();
+		iter != bank.getAccounts().end(); ++iter) {
+		cout << (*iter)->getDate() << endl;
 	}
 
 	//Call the main menu function
