@@ -12,15 +12,17 @@ public:
 	//Getters
 	const std::vector<Customer*>& getCustomers() const; //Changed to const for iter
 	const std::vector<Account*>& getAccounts() const; //Changed to const for iter
+	const std::vector<Transaction*>& getTransactions() const; //Changed to const for iter
 
 	//Setters
 	void setCustomer(Customer*);
 	void setAccount(Account*);
+	void setTransaction(Transaction*);
 
 	//Read Functions
 	void readCustomers();
 	void readAccounts();
-	//void readTransactions();
+	void readTransactions();
 
 	//Creation Functions
 	void main_menu();
@@ -34,6 +36,7 @@ public:
 private:
 	std::vector<Customer*> pCustomers;
 	std::vector<Account*> pAccounts;
+	std::vector<Transaction*> pTransactions;
 };
 
 #endif

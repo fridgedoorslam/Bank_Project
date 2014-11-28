@@ -5,17 +5,21 @@
 //Getters
 const vector<Customer*>& Bank::getCustomers() const { return pCustomers; } //Changed to const for iter
 
-const vector<Account*>& Bank::getAccounts() const { return pAccounts; } //Changed to const for iter
+const vector<Account*>& Bank::getAccounts() const { return pAccounts; } //Changed to const for
+
+const vector<Transaction*>& Bank::getTransactions() const { return pTransactions; }
 
 //Setters
-void Bank::setCustomer(Customer* CUSTOMER) { pCustomers.push_back(CUSTOMER); }
+void Bank::setCustomer(Customer* Customer) { pCustomers.push_back(Customer); }
 
-void Bank::setAccount(Account* ACCOUNT) { pAccounts.push_back(ACCOUNT); }
+void Bank::setAccount(Account* Account) { pAccounts.push_back(Account); }
+
+void Bank::setTransaction(Transaction* Transaction){ pTransactions.push_back(Transaction); }
 
 
 //Functions
 
-//Function to read customers file and store information into customers vector
+//Read customers file and store information into bank's customers vector
 void Bank::readCustomers() {
 	ifstream customer_file("customer_input.txt");
 	if (!customer_file) {
@@ -26,7 +30,7 @@ void Bank::readCustomers() {
 	}
 }
 
-//Read account file and store information into accounts vector
+//Read account file and store information into bank's accounts vector
 void Bank::readAccounts() {
 	ifstream account_file("accounts_input.txt");
 	if (!account_file) {
@@ -37,17 +41,16 @@ void Bank::readAccounts() {
 	}
 }
 
-/*
+//Read transaction file and store transactions into proper account
 void Bank::readTransactions() {
-	ifstream transaction_file;
-	transaction_file.open("transactions_input.txt");
-	Transaction buffer;
-	while (transaction_file >> buffer) {
-		//Do some shit here
+	ifstream transaction_file("transactions_input.txt");
+	if (!transaction_file) {
+		cout << "transactions_input.txt not found." << endl;
+	}
+	while (!transaction_file.eof()) {
+		transaction_file >> pTransactions;
 	}
 }
-*/
-
 
 //Menu Functions
 void Bank::main_menu() {
@@ -154,9 +157,15 @@ void Bank::customer_info_menu() {
 
 //Print Customer Statements
 void Bank::print_customer_statements() {
-	// Here you can print single accounts 
+	int account_number;
 	cout << "--Print a Customer Account--" << endl;
 	cout << "Enter Account Number: " << endl;
+	cin >> account_number;
+	vector<Account*>::const_iterator iter;
+	for (iter = pAccounts.begin();
+		iter != pAccounts.end(); ++iter) {
+
+	}
 	// if this account list customer's account
 	// on selection print that account (CD, Checking, Savings)
 }

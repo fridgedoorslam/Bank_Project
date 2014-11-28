@@ -7,8 +7,8 @@ Transaction::Transaction(){
 }
 
 //Constructor
-Transaction::Transaction(const string Type, double Amount, const Date& TransDate, string Info)
-{
+Transaction::Transaction(int number, const string Type, double Amount, const Date& TransDate, string Info) {
+	account_number = number;
 	type = Type;
 	amount = Amount;
 	transDate = TransDate;
@@ -35,9 +35,15 @@ void Transaction::setInfo(string Info) { info = Info; }
 
 
 //Operators
-istream& operator>>(istream& input, Transaction& transaction) {
-	input >> transaction.type >> transaction.amount >> transaction.transDate;
-	getline(input, transaction.info);
+istream& operator>>(istream& input, vector<Transaction*>& vector) {
+	int account;
+	string type, info;
+	double amount;
+	Date date;
+	input >> account >> type >> amount >> date;
+	getline(input, info);
+	Transaction* new_transaction = new Transaction(account, type, amount, date, info);
+	vector.push_back(new_transaction);
 	return input;
 }
 

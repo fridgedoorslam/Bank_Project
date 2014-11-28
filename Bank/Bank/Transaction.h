@@ -5,33 +5,33 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
 
 class Transaction {
 public:
 	//Constructors
 	Transaction();
-	Transaction(const string, double, const Date&, string);
+	Transaction(int, const std::string, double, const Date&, std::string);
 
 	//Getters
-	string getType() const;
+	std::string getType() const;
 	double getAmount() const;
 	const Date& getDate() const;
-	string getInfo() const;
+	std::string getInfo() const;
 
 	//Setters
-	void setType(const string);
+	void setType(const std::string);
 	void setAmount(double);
 	void setDate(const Date&);
-	void setInfo(string);
+	void setInfo(std::string);
 
 	//Operators
-	friend istream& operator>>(istream&, Transaction&);
-	friend ostream& operator<<(ostream&, const Transaction&);
+	friend istream& operator>>(std::istream&, std::vector<Transaction*>&);
+	friend ostream& operator<<(std::ostream&, const Transaction&);
 	bool operator<(const Transaction&) const;
 
 private:
-	string type, info;
+	int account_number;
+	std::string type, info;
 	double amount;
 	Date transDate;
 };
