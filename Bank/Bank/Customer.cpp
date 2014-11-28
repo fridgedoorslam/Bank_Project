@@ -49,11 +49,4 @@ istream& operator>>(istream& INPUT, vector<Customer*>& vector) {
 	Customer* new_customer = new Customer(new_id, new_ssn, new_first, new_last, new_address);
 	vector.push_back(new_customer);
 	return INPUT;
-	//Old Logic
-	/*
-	INPUT >> CUSTOMER.customer_id >> CUSTOMER.social_security >>
-		CUSTOMER.first_name >> CUSTOMER.last_name;
-	getline(INPUT, CUSTOMER.address);
-	return INPUT;
-	*/
 }

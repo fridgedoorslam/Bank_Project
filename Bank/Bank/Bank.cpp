@@ -52,6 +52,8 @@ void Bank::readTransactions() {
 	}
 }
 
+
+
 //Menu Functions
 void Bank::main_menu() {
 	cout << "--Main Menu--" << endl;
@@ -113,15 +115,34 @@ void Bank::customer_input_menu() {
 
 //Transaction Input
 void Bank::transaction_input_menu() {
-	cout << "Here you can input a transaction to an account." << endl;
-	system("pause");
-	cout << endl << endl << endl;
-	main_menu();
+	cout << "--Transaction Input Menu--" << endl << endl;
+	int account;
+	string type, info;
+	double amount;
+	Date date;
+	cout << "Account to apply to: "; cin >> account;
+	cout << "Transaction type (d or w): "; cin >> type;
+	cout << "Amount "; cin >> amount;
+	cout << "Date of transaction: "; cin >> date;
+	cout << "Description: ";
+	getline(cin, info);
+	Transaction* new_transaction = new Transaction(account, type, amount, date, info);
+	pTransactions.push_back(new_transaction);
+	cout << "Successfully added transaction." << endl;
+	cout << "Enter 1 to add another transaction." << endl;
+	cout << "Enter 0 to return to the main menu." << endl;
+	int option = get_input();
+	switch (option) {
+	case 0:
+		main_menu();
+	case 1:
+		transaction_input_menu();
+	}
 }
 
 //Account Input
 void Bank::account_input_menu() {
-	cout << "--Account Input Menu--" << endl;
+	cout << "--Account Input Menu--" << endl << endl;
 	int number;
 	double balance;
 	Date date;
