@@ -22,7 +22,7 @@ string Customer::getLast() const { return last_name; }
 
 string Customer::getAddress() const { return address; }
 
-vector<Account*> Customer::getAccounts() { return pAccounts; }
+const vector<Account*>& Customer::getAccounts() const { return pAccounts; }
 
 //Setters
 void Customer::setId(int ID) { customer_id = ID; }

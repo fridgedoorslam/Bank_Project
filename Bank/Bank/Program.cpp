@@ -11,6 +11,7 @@ int main() {
 	bank.readCustomers();
 	bank.readAccounts();
 	bank.readTransactions();
+	bank.readAssociation();
 
 	//Display main menu
 	bank.main_menu();

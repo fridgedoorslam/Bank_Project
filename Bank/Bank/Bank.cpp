@@ -69,6 +69,47 @@ void Bank::readTransactions() {
 	}
 }
 
+//Read association file to associate customers with accounts
+void Bank::readAssociation() {
+	ifstream association_file("account_association.txt");
+	if (!association_file) {
+		cout << "account_association.txt not found." << endl;
+	}
+	//Create Iterators
+	vector<Customer*>::const_iterator customer_iter;
+	vector<Account*>::const_iterator account_iter;
+
+	//Loop through accounts and store into customers
+	while (!association_file.eof()) {
+		int customer_number, account_number;
+		association_file >> customer_number >> account_number;
+
+		//Loop through customers and add pointer to owner vector of proper account
+		for (customer_iter = pCustomers.begin(); customer_iter != pCustomers.end(); ++customer_iter) {
+			if ((*customer_iter)->getId() == customer_number) {
+				Customer* pCustomer = (*customer_iter);
+				for (account_iter = pAccounts.begin(); account_iter != pAccounts.end(); ++account_iter) {
+					if ((*account_iter)->getNumber() == customer_number) {
+						(*account_iter)->setOwner(pCustomer);
+					}
+				}
+			}
+		}
+
+		//Loop through accounts and add pointer to account vector of proper customer
+		for (account_iter = pAccounts.begin(); account_iter != pAccounts.end(); ++account_iter) {
+			if ((*account_iter)->getNumber() == account_number) {
+				Account* pAccount = (*account_iter);
+				for (customer_iter = pCustomers.begin(); customer_iter != pCustomers.end(); ++customer_iter) {
+					if ((*customer_iter)->getId() == customer_number) {
+						(*customer_iter)->setAccout(pAccount);
+					}
+				}
+			}
+		}
+	}
+}
+
 
 
 //Menu Functions
@@ -81,6 +122,7 @@ void Bank::main_menu() {
 	cout << "Enter 3 to add a transaction to an existing account." << endl;
 	cout << "Enter 4 to view customer Information" << endl;
 	cout << "Enter 5 to print customer account statements" << endl;
+	cout << "Enter 6 to print total values of a certain account" << endl;
 	cout << "Enter 0 to exit application." << endl;
 	int option = get_input();
 	switch (option) {
@@ -96,6 +138,8 @@ void Bank::main_menu() {
 		customer_info_menu();
 	case 5:
 		print_customer_statements();
+	case 6:
+		print_total();
 	}
 }
 
@@ -194,12 +238,19 @@ void Bank::account_input_menu() {
 //Customer Info Menu
 void Bank::customer_info_menu() {
 	cout << "--Customer Information Menu--" << endl << endl;
+	vector<Account*>::const_iterator account_iter;
 	vector<Customer*>::const_iterator iter;
 	for (iter = pCustomers.begin();
 		iter != pCustomers.end(); ++iter) {
 		// We could probably overload an operator for this long bit
 		cout << (*iter)->getId() << " " << (*iter)->getSocial() << " " <<
 			(*iter)->getFirst() << " " << (*iter)->getLast() << (*iter)->getAddress() << endl;
+		/*
+		for (account_iter = (*iter)->getAccounts().begin();
+			account_iter != (*iter)->getAccounts().end(); ++account_iter) {
+			cout << (*account_iter) << endl;
+		}
+		*/
 	}
 	main_menu();
 }
@@ -244,6 +295,22 @@ void Bank::print_customer_statements() {
 
 
 
+void Bank::print_total() {
+	int account_type;
+	int total;
+	total = 0;
+	cout << "--Print Total Values--" << endl;
+	cout << "Enter 1 for Saving Accounts" << endl;
+	cout << "Enter 2 for Checking Accounts" << endl;
+	cout << "Enter 3 for CD Accounts" << endl;
+	cin >> account_type;
+	vector<Account*>::const_iterator account_iter;
+	vector<Transaction*>::const_iterator transaction_iter;
+	for (account_iter = pAccounts.begin();
+		account_iter != pAccounts.end(); ++account_iter) {
+	}
+}
+		
 //Other Functions
 
 //Get Input

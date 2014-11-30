@@ -41,3 +41,4 @@ istream& operator>>(istream& INPUT, vector<Account*>& vector) {
 	vector.push_back(new_account);
 	return INPUT;
 }
+
