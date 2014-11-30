@@ -267,13 +267,14 @@ void Bank::account_association_menu() {
 			}
 		}
 	}
-	//Loop through customers and add pointer to owner vector of proper account
-	for (customer_iter = pCustomers.begin(); customer_iter != pCustomers.end(); ++customer_iter) {
-		if ((*customer_iter)->getId() == accountNumber) {
-			Customer* pCustomer = (*customer_iter);
-			for (account_iter = pAccounts.begin(); account_iter != pAccounts.end(); ++account_iter) {
-				if ((*account_iter)->getNumber() == accountNumber) {
-					(*account_iter)->setOwner(pCustomer);
+
+	//Loop through accounts and add pointer to account vector of proper customer
+	for (account_iter = pAccounts.begin(); account_iter != pAccounts.end(); ++account_iter) {
+		if ((*account_iter)->getNumber() == accountNumber) {
+			Account* pAccount = (*account_iter);
+			for (customer_iter = pCustomers.begin(); customer_iter != pCustomers.end(); ++customer_iter) {
+				if ((*customer_iter)->getId() == customerNumber) {
+					(*customer_iter)->setAccout(pAccount);
 				}
 			}
 		}
