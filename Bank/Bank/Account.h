@@ -34,7 +34,8 @@ public:
 	friend std::istream& operator>>(std::istream&, std::vector<Account*>&);
 	
 	//Functions
-	int calculate_total();
+	double calculate_total();
+	bool sort_transactions(Transaction*, Transaction*);
 
 private:
 	int account_number;

@@ -43,12 +43,16 @@ istream& operator>>(istream& INPUT, vector<Account*>& vector) {
 }
 
 //Functions
-int Account::calculate_total() {
-	int total = opening_balance;
+double Account::calculate_total() {
+	double total = opening_balance;
 	vector<Transaction*>::const_iterator transaction_iter;
 	//Sort the fuckers
 	for (transaction_iter = pTransactions.begin(); transaction_iter != pTransactions.end(); ++transaction_iter) {
 
 	}
 	return total;
+}
+
+bool Account::sort_transactions(Transaction* a, Transaction* b) {
+	return true;
 }
