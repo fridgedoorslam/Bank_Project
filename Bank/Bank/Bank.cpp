@@ -121,6 +121,7 @@ void Bank::main_menu() {
 	cout << "Enter 5 to associate accounts." << endl;
 	cout << "Enter 6 to print customer account statements." << endl;
 	cout << "Enter 7 to print total values of a certain account." << endl;
+	cout << "Enter 8 to print customers and their total value of their associated account(s)" << endl;
 	cout << "Enter 0 to exit application." << endl;
 	int option = get_input();
 	switch (option) {
@@ -140,6 +141,8 @@ void Bank::main_menu() {
 		print_customer_statements();
 	case 7:
 		print_total();
+	case 8:
+		customer_summary_menu();
 	}
 }
 
@@ -365,6 +368,26 @@ void Bank::print_total() {
 	cout << total << endl;
 	main_menu();
 }
+
+// Prints customer name and the total value of their accounts
+void Bank::customer_summary_menu() {
+	cout << "--Customer Summary Menu--" << endl << endl;
+	vector<Account*>::const_iterator account_iter;
+	vector<Customer*>::const_iterator iter;
+	for (iter = pCustomers.begin();
+		iter != pCustomers.end(); ++iter) {
+		cout << (*iter)->getId() << " "  << (*iter)->getFirst() << " " << (*iter)->getLast() << endl;
+		for (account_iter = (*iter)->getAccounts().begin();
+		account_iter != (*iter)->getAccounts().end(); ++account_iter) {
+			double total = 0;
+			total += (*account_iter)->calculate_total();
+			cout << (*account_iter)->getNumber() << " " << total << endl;
+		}
+		
+	}
+	main_menu();
+}
+
 		
 
 //Other Functions
