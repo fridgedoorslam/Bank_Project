@@ -2,6 +2,7 @@
 #define Account_h
 
 #include <vector>
+#include <algorithm>
 #include "Transaction.h"
 #include "Date.h"
 
