@@ -35,7 +35,6 @@ public:
 	
 	//Functions
 	double calculate_total();
-	bool sort_transactions(Transaction*, Transaction*);
 
 private:
 	int account_number;
@@ -44,5 +43,8 @@ private:
 	std::vector<Transaction*> pTransactions;
 	std::vector<Customer*> pOwners;
 };
+
+//Sorting function to sort vector of transaction pointers
+bool sort_transactions(Transaction*&, Transaction*&);
 
 #endif
