@@ -24,6 +24,7 @@ void Bank::readCustomers() {
 	ifstream customer_file("customer_input.txt");
 	if (!customer_file) {
 		cout << "customer_input.txt not found." << endl;
+		exit(0);
 	}
 	while (!customer_file.eof()) {
 		customer_file >> pCustomers;
@@ -244,10 +245,15 @@ void Bank::customer_info_menu() {
 
 //Print Customer Statements
 void Bank::print_customer_statements() {
-	int account_number;
+	int account_number, month, year;
 	cout << "--Print a Customer Statement--" << endl;
 	cout << "Enter Account Number: ";
 	cin >> account_number;
+	cout << "What Month? ";
+	cin >> month;
+	cout << "What Year? ";
+	cin >> year;
+	cout << endl << "--Statement from " << month << "/" << year << "--" << endl << endl;
 	vector<Account*>::const_iterator account_iter;
 	vector<Transaction*>::const_iterator transaction_iter;
 	for (account_iter = pAccounts.begin();
@@ -257,14 +263,16 @@ void Bank::print_customer_statements() {
 			for (transaction_iter = (*account_iter)->getTransactions().begin();
 				transaction_iter != (*account_iter)->getTransactions().end();
 				++transaction_iter) {
-				cout << (*transaction_iter)->getDate();
-				if ((*transaction_iter)->getType() == "d") {
-					cout << " Deposit, $" << (*transaction_iter)->getAmount() << 
-						" from " << (*transaction_iter)->getInfo() << "." << endl;
-				}
-				else {
-					cout << " Withdrawal, $" << (*transaction_iter)->getAmount() << 
-						" to " << (*transaction_iter)->getInfo() << "." << endl;
+				if ((*transaction_iter)->getDate().getMonth() == month && (*transaction_iter)->getDate().getYear() == year) {
+					cout << (*transaction_iter)->getDate();
+					if ((*transaction_iter)->getType() == "d") {
+						cout << " Deposit, $" << (*transaction_iter)->getAmount() <<
+							" from " << (*transaction_iter)->getInfo() << "." << endl;
+					}
+					else {
+						cout << " Withdrawal, $" << (*transaction_iter)->getAmount() <<
+							" to " << (*transaction_iter)->getInfo() << "." << endl;
+					}
 				}
 			}
 		}
