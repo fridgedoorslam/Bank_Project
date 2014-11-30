@@ -275,6 +275,8 @@ void Bank::print_customer_statements() {
 			for (transaction_iter = (*account_iter)->getTransactions().begin();
 				transaction_iter != (*account_iter)->getTransactions().end();
 				++transaction_iter) {
+				//Sort those motherfuckers
+				//sort((*account_iter)->getTransactions().begin(), (*account_iter)->getTransactions().end(), sort_transactions);
 				if ((*transaction_iter)->getDate().getMonth() == month && (*transaction_iter)->getDate().getYear() == year) {
 					cout << (*transaction_iter)->getDate();
 					if ((*transaction_iter)->getType() == "d") {

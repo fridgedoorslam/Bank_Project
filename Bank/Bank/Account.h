@@ -44,6 +44,7 @@ private:
 	std::vector<Customer*> pOwners;
 };
 
+//Sorting function to sort vector of transaction pointers
 bool sort_transactions(Transaction*&, Transaction*&);
 
 #endif
