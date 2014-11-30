@@ -41,3 +41,9 @@ istream& operator>>(istream& INPUT, vector<Account*>& vector) {
 	vector.push_back(new_account);
 	return INPUT;
 }
+
+//Functions
+int calculate_total() {
+	vector<Transaction*>::const_iterator transaction_iter;
+	for ()
+}
