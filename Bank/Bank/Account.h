@@ -31,6 +31,9 @@ public:
 
 	//Operators
 	friend std::istream& operator>>(std::istream&, std::vector<Account*>&);
+	
+	//Functions
+	int calculate_total();
 
 private:
 	int account_number;
