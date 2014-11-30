@@ -1,6 +1,7 @@
 #include "Bank.h"
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 
 //Getters
 const vector<Customer*>& Bank::getCustomers() const { return pCustomers; } //Changed to const for iter
@@ -121,6 +122,7 @@ void Bank::main_menu() {
 	cout << "Enter 3 to add a transaction to an existing account." << endl;
 	cout << "Enter 4 to view customer Information" << endl;
 	cout << "Enter 5 to print customer account statements" << endl;
+	cout << "Enter 6 to print total values of a certain account" << endl;
 	cout << "Enter 0 to exit application." << endl;
 	int option = get_input();
 	switch (option) {
@@ -136,6 +138,8 @@ void Bank::main_menu() {
 		customer_info_menu();
 	case 5:
 		print_customer_statements();
+	case 6:
+		print_total();
 	}
 }
 
@@ -179,6 +183,14 @@ void Bank::transaction_input_menu() {
 	cout << "Description: "; getline(cin, info); getline(cin, info);
 	Transaction* new_transaction = new Transaction(account, type, amount, date, info);
 	pTransactions.push_back(new_transaction);
+	std::fstream fs;
+	fs.open("transactions_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+
+	fs << account << " " << type <<" " << amount << " " << date << " " << info << endl;
+
+	fs.close();
+
+
 
 	//Loop through accounts and store transaction pointer into proper one
 	vector<Account*>::const_iterator account_iter;
@@ -283,6 +295,22 @@ void Bank::print_customer_statements() {
 
 
 
+void Bank::print_total() {
+	int account_type;
+	int total;
+	total = 0;
+	cout << "--Print Total Values--" << endl;
+	cout << "Enter 1 for Saving Accounts" << endl;
+	cout << "Enter 2 for Checking Accounts" << endl;
+	cout << "Enter 3 for CD Accounts" << endl;
+	cin >> account_type;
+	vector<Account*>::const_iterator account_iter;
+	vector<Transaction*>::const_iterator transaction_iter;
+	for (account_iter = pAccounts.begin();
+		account_iter != pAccounts.end(); ++account_iter) {
+	}
+}
+		
 //Other Functions
 
 //Get Input
