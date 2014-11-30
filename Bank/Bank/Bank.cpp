@@ -1,6 +1,7 @@
 #include "Bank.h"
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 
 //Getters
 const vector<Customer*>& Bank::getCustomers() const { return pCustomers; } //Changed to const for iter
@@ -138,6 +139,14 @@ void Bank::transaction_input_menu() {
 	cout << "Description: "; getline(cin, info); getline(cin, info);
 	Transaction* new_transaction = new Transaction(account, type, amount, date, info);
 	pTransactions.push_back(new_transaction);
+	std::fstream fs;
+	fs.open("transactions_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+
+	fs << account << " " << type <<" " << amount << " " << date << " " << info << endl;
+
+	fs.close();
+
+
 
 	//Loop through accounts and store transaction pointer into proper one
 	vector<Account*>::const_iterator account_iter;
