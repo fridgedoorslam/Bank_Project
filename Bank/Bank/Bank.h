@@ -23,6 +23,7 @@ public:
 	void readCustomers();
 	void readAccounts();
 	void readTransactions();
+	void readAssociation();
 
 	//Creation Functions
 	void main_menu();
