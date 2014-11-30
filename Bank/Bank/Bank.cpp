@@ -293,8 +293,7 @@ void Bank::print_customer_statements() {
 	main_menu();
 }
 
-
-
+//Print account totals
 void Bank::print_total() {
 	int account_type;
 	int total;
@@ -309,6 +308,7 @@ void Bank::print_total() {
 	for (account_iter = pAccounts.begin();
 		account_iter != pAccounts.end(); ++account_iter) {
 	}
+	main_menu();
 }
 		
 //Other Functions

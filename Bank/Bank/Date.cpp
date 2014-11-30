@@ -91,7 +91,7 @@ bool compare(const Date& x, const Date&y) {
 }
 
 bool compareEqual(const Date& x, const Date& y) {
-	if (x.getYear() == y.getYear() && x.getMonth() == y.getMonth() & x.getDay() == y.getDay()) {
+	if (x.getYear() == y.getYear() && x.getMonth() == y.getMonth() && x.getDay() == y.getDay()) {
 		return true;
 	}
 	else {
