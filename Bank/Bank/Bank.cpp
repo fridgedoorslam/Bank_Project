@@ -79,6 +79,7 @@ void Bank::main_menu() {
 	cout << "Enter 3 to add a transaction to an existing account." << endl;
 	cout << "Enter 4 to view customer Information" << endl;
 	cout << "Enter 5 to print customer account statements" << endl;
+	cout << "Enter 6 to print total values of a certain account" << endl;
 	cout << "Enter 0 to exit application." << endl;
 	int option = get_input();
 	switch (option) {
@@ -94,6 +95,8 @@ void Bank::main_menu() {
 		customer_info_menu();
 	case 5:
 		print_customer_statements();
+	case 6:
+		print_total();
 	}
 }
 
@@ -227,6 +230,22 @@ void Bank::print_customer_statements() {
 
 
 
+void Bank::print_total() {
+	int account_type;
+	int total;
+	total = 0;
+	cout << "--Print Total Values--" << endl;
+	cout << "Enter 1 for Saving Accounts" << endl;
+	cout << "Enter 2 for Checking Accounts" << endl;
+	cout << "Enter 3 for CD Accounts" << endl;
+	cin >> account_type;
+	vector<Account*>::const_iterator account_iter;
+	vector<Transaction*>::const_iterator transaction_iter;
+	for (account_iter = pAccounts.begin();
+		account_iter != pAccounts.end(); ++account_iter) {
+	}
+}
+		
 //Other Functions
 
 //Get Input

@@ -33,6 +33,10 @@ public:
 	friend ostream& operator<<(ostream&, const Date&);
 	bool operator ==(const Date&) const;
 	bool operator <(const Date&) const;
+	
+	//pathetic comparison
+	bool compare(const Date&, const Date&);
+	bool compareEqual(const Date&, const Date&);
 
 private:
 	int day, month, year;
