@@ -22,7 +22,7 @@ public:
 	std::string getFirst() const;
 	std::string getLast() const;
 	std::string getAddress() const;
-	std::vector<Account*> getAccounts();
+	const std::vector<Account*>& getAccounts() const;
 
 	//Setters
 	void setId(int);
