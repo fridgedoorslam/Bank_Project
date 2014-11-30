@@ -34,6 +34,7 @@ public:
 	void customer_info_menu();
 	void print_customer_statements();
 	void print_total();
+	void customer_summary_menu();
 
 private:
 	std::vector<Customer*> pCustomers;

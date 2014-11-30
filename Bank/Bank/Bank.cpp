@@ -123,6 +123,7 @@ void Bank::main_menu() {
 	cout << "Enter 4 to view customer Information" << endl;
 	cout << "Enter 5 to print customer account statements" << endl;
 	cout << "Enter 6 to print total values of a certain account" << endl;
+	cout << "Enter 7 to print customer summary" << endl;
 	cout << "Enter 0 to exit application." << endl;
 	int option = get_input();
 	switch (option) {
@@ -140,6 +141,8 @@ void Bank::main_menu() {
 		print_customer_statements();
 	case 6:
 		print_total();
+	case 7:
+		customer_summary_menu();
 	}
 }
 
@@ -242,6 +245,7 @@ void Bank::customer_info_menu() {
 	vector<Customer*>::const_iterator iter;
 	for (iter = pCustomers.begin();
 		iter != pCustomers.end(); ++iter) {
+		
 		// We could probably overload an operator for this long bit
 		cout << (*iter)->getId() << " " << (*iter)->getSocial() << " " <<
 			(*iter)->getFirst() << " " << (*iter)->getLast() << (*iter)->getAddress() << endl;
@@ -305,12 +309,31 @@ void Bank::print_total() {
 	cout << "Enter 3 for CD Accounts" << endl;
 	cin >> account_type;
 	vector<Account*>::const_iterator account_iter;
-	vector<Transaction*>::const_iterator transaction_iter;
 	for (account_iter = pAccounts.begin();
 		account_iter != pAccounts.end(); ++account_iter) {
-		total += (*account_iter)->calculate_total();
+		total = (*account_iter)->calculate_total();
+		cout << total;
 	}
-	cout << total << endl;
+	main_menu();
+}
+
+void Bank::customer_summary_menu() {
+	cout << "--Customer Summary Menu--" << endl << endl;
+	vector<Account*>::const_iterator account_iter;
+	vector<Customer*>::const_iterator iter;
+	for (iter = pCustomers.begin();
+		iter != pCustomers.end(); ++iter) {
+		cout << (*iter)->getId() << " " << (*iter)->getFirst() << " " << (*iter)->getLast() <<  endl;
+		for (account_iter = (*iter)->getAccounts().begin();
+			account_iter != (*iter)->getAccounts().end(); ++account_iter) {
+			double total = 0;
+			total = (*account_iter)->calculate_total();
+			cout << (*account_iter)->getNumber() << " " << total << endl;
+
+		
+		}
+		
+	}
 	main_menu();
 }
 		
