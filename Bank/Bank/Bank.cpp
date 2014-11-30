@@ -296,8 +296,7 @@ void Bank::print_customer_statements() {
 //Print account totals
 void Bank::print_total() {
 	int account_type;
-	int total;
-	total = 0;
+	double total = 0;
 	cout << "--Print Total Values--" << endl;
 	cout << "Enter 1 for Saving Accounts" << endl;
 	cout << "Enter 2 for Checking Accounts" << endl;
@@ -307,7 +306,9 @@ void Bank::print_total() {
 	vector<Transaction*>::const_iterator transaction_iter;
 	for (account_iter = pAccounts.begin();
 		account_iter != pAccounts.end(); ++account_iter) {
+		total += (*account_iter)->calculate_total();
 	}
+	cout << total << endl;
 	main_menu();
 }
 		
