@@ -110,7 +110,9 @@ void Bank::readAssociation() {
 	}
 }
 
+
 //Menu Functions
+
 //Main Menu
 void Bank::main_menu() {
 	cout << "--Main Menu--" << endl;
@@ -251,6 +253,7 @@ void Bank::account_input_menu() {
 	}
 }
 
+//Associate accounts
 void Bank::account_association_menu() {
 	int customerNumber, accountNumber;
 	vector<Customer*>::const_iterator customer_iter;
@@ -310,7 +313,7 @@ void Bank::customer_info_menu() {
 		iter != pCustomers.end(); ++iter) {
 		// We could probably overload an operator for this long bit
 		cout << (*iter)->getId() << " " << (*iter)->getSocial() << " " <<
-			(*iter)->getFirst() << " " << (*iter)->getLast() << (*iter)->getAddress() << endl;
+			(*iter)->getFirst() << " " << (*iter)->getLast() << " " << (*iter)->getAddress() << endl;
 		/*
 		for (account_iter = (*iter)->getAccounts().begin();
 			account_iter != (*iter)->getAccounts().end(); ++account_iter) {
@@ -337,12 +340,13 @@ void Bank::print_customer_statements() {
 	for (account_iter = pAccounts.begin();
 		account_iter != pAccounts.end(); ++account_iter) {
 		if ((*account_iter)->getNumber() == account_number) {
-			//for each transaction, cout it!!!
+			//for each transaction, print it to screen
 			for (transaction_iter = (*account_iter)->getTransactions().begin();
 				transaction_iter != (*account_iter)->getTransactions().end();
 				++transaction_iter) {
-				//Sort those motherfuckers
-				//sort((*account_iter)->getTransactions().begin(), (*account_iter)->getTransactions().end(), sort_transactions);
+				//Sort the transactions before they get printed
+				sort((*account_iter)->getTransactions().begin(), (*account_iter)->getTransactions().end(), sort_transactions);
+
 				if ((*transaction_iter)->getDate().getMonth() == month && (*transaction_iter)->getDate().getYear() == year) {
 					cout << (*transaction_iter)->getDate();
 					if ((*transaction_iter)->getType() == "d") {
@@ -402,7 +406,6 @@ void Bank::customer_summary_menu() {
 			total += (*account_iter)->calculate_total();
 			cout << "Account Number: " << (*account_iter)->getNumber() << " " << " Account Total: $" << total << endl << endl;
 		}
-		
 	}
 	cout << "--Customer Summary Complete--" << endl << endl;
 	cout << "Enter 1 to print the summary again." << endl;

@@ -20,7 +20,7 @@ public:
 	int getNumber() const;
 	double getBalance();
 	Date getDate() const;
-	const std::vector<Transaction*>& getTransactions() const; //Changed to const for iter
+	std::vector<Transaction*>& getTransactions(); //Changed to const for iter
 	std::vector<Customer*> getOwners();
 
 	//Setters
@@ -42,6 +42,28 @@ private:
 	Date opening_date;
 	std::vector<Transaction*> pTransactions;
 	std::vector<Customer*> pOwners;
+};
+
+class Savings_Account : public Account {
+public:
+	Savings_Account();
+
+private:
+	double interest_rate;
+};
+
+class Checking_Account : public Account {
+
+private:
+	double monthly_fee;
+	double overdraft_fee;
+};
+
+class CD_Account : public Account {
+
+private:
+	double interest_rate;
+	Date maturity_date;
 };
 
 //Sorting function to sort vector of transaction pointers
