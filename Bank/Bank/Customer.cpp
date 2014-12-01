@@ -35,7 +35,7 @@ void Customer::setLast(string LAST) { last_name = LAST; }
 
 void Customer::setAddress(string ADDRESS) { address = ADDRESS; }
 
-void Customer::setAccout(Account* ACCOUNT) { pAccounts.push_back(ACCOUNT); }
+void Customer::setAccount(Account* ACCOUNT) { pAccounts.push_back(ACCOUNT); }
 
 
 //Operators

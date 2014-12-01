@@ -30,7 +30,7 @@ public:
 	void setFirst(std::string);
 	void setLast(std::string);
 	void setAddress(std::string);
-	void setAccout(Account*);
+	void setAccount(Account*);
 
 	//Operators
 	friend std::istream& operator>>(std::istream&, std::vector<Customer*>&);

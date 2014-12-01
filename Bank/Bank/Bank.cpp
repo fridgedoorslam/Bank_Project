@@ -102,7 +102,7 @@ void Bank::readAssociation() {
 				Account* pAccount = (*account_iter);
 				for (customer_iter = pCustomers.begin(); customer_iter != pCustomers.end(); ++customer_iter) {
 					if ((*customer_iter)->getId() == customer_number) {
-						(*customer_iter)->setAccout(pAccount);
+						(*customer_iter)->setAccount(pAccount);
 					}
 				}
 			}
@@ -123,6 +123,8 @@ void Bank::main_menu() {
 	cout << "Enter 4 to view customer Information" << endl;
 	cout << "Enter 5 to print customer account statements" << endl;
 	cout << "Enter 6 to print total values of a certain account" << endl;
+	cout << "Enter 7 to associate account" << endl;
+	cout << "Enter 8 to view customer summaries" << endl;
 	cout << "Enter 0 to exit application." << endl;
 	int option = get_input();
 	switch (option) {
@@ -140,6 +142,10 @@ void Bank::main_menu() {
 		print_customer_statements();
 	case 6:
 		print_total();
+	case 7:
+		account_association_menu();
+	case 8:
+		customer_summary_menu();
 	}
 }
 
@@ -156,6 +162,13 @@ void Bank::customer_input_menu() {
 	cout << "Customer ID Number: "; cin >> new_id;
 	Customer* new_customer = new Customer(new_id, new_ssn, new_first, new_last, new_address);
 	pCustomers.push_back(new_customer);
+	
+	//Add to text file
+	fstream newCustomer;
+	newCustomer.open("customer_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+	newCustomer << endl << new_id << " " << new_ssn << " " << new_first << " " << new_last << " " << new_address;
+	newCustomer.close();
+
 	cout << "Successfully added customer." << endl;
 	cout << "Enter 1 to add another customer." << endl;
 	cout << "Enter 0 to return to the main menu." << endl;
@@ -186,7 +199,7 @@ void Bank::transaction_input_menu() {
 	std::fstream fs;
 	fs.open("transactions_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
 
-	fs << account << " " << type <<" " << amount << " " << date << " " << info << endl;
+	fs << endl << account << " " << type <<" " << amount << " " << date << " " << info;
 
 	fs.close();
 
@@ -223,6 +236,13 @@ void Bank::account_input_menu() {
 	cout << "Date: "; cin >> date;
 	Account* new_account = new Account(number, balance, date);
 	pAccounts.push_back(new_account);
+
+	//Add to text file
+	fstream newAccount;
+	newAccount.open("accounts_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+	newAccount << endl << number << " " << balance << " " << date;
+	newAccount.close();
+
 	cout << "Successfully added account." << endl;
 	cout << "Enter 1 to add another account." << endl;
 	cout << "Enter 0 to return to the main menu." << endl;
@@ -314,7 +334,13 @@ void Bank::print_total() {
 	main_menu();
 }
 		
+void Bank::account_association_menu() {
 
+}
+
+void Bank::customer_summary_menu() {
+
+}
 //Other Functions
 
 //Get Input

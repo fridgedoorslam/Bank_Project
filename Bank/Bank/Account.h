@@ -44,6 +44,18 @@ private:
 	std::vector<Customer*> pOwners;
 };
 
+class Savings_Account : public Account {
+
+};
+
+class Checking_Account : public Account {
+
+};
+
+class CD_Account : public Account {
+
+};
+
 //Sorting function to sort vector of transaction pointers
 bool sort_transactions(Transaction*&, Transaction*&);
 
