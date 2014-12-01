@@ -102,7 +102,7 @@ void Bank::readAssociation() {
 				Account* pAccount = (*account_iter);
 				for (customer_iter = pCustomers.begin(); customer_iter != pCustomers.end(); ++customer_iter) {
 					if ((*customer_iter)->getId() == customer_number) {
-						(*customer_iter)->setAccout(pAccount);
+						(*customer_iter)->setAccount(pAccount);
 					}
 				}
 			}
@@ -163,7 +163,7 @@ void Bank::customer_input_menu() {
 	// Adds new customer to customer text file
 	fstream newCustomer;
 	newCustomer.open("customer_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-	newCustomer << new_id << " " << new_ssn << " " << new_first << " " << new_last << " " << new_address << endl;
+	newCustomer << endl << new_id << " " << new_ssn << " " << new_first << " " << new_last << " " << new_address;
 	newCustomer.close();
 
 	cout << "Successfully added customer." << endl;
@@ -234,8 +234,8 @@ void Bank::account_input_menu() {
 
 	//Adds new account to account text file
 	fstream newAccount;
-	newAccount.open("transactions_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-	newAccount << number << " " << balance << endl;
+	newAccount.open("accounts_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+	newAccount << endl << number << " " << balance << " " << date;
 	newAccount.close();
 
 	cout << "Successfully added account." << endl;
@@ -270,14 +270,13 @@ void Bank::account_association_menu() {
 			}
 		}
 	}
-
 	//Loop through accounts and add pointer to account vector of proper customer
 	for (account_iter = pAccounts.begin(); account_iter != pAccounts.end(); ++account_iter) {
 		if ((*account_iter)->getNumber() == accountNumber) {
 			Account* pAccount = (*account_iter);
 			for (customer_iter = pCustomers.begin(); customer_iter != pCustomers.end(); ++customer_iter) {
 				if ((*customer_iter)->getId() == customerNumber) {
-					(*customer_iter)->setAccout(pAccount);
+					(*customer_iter)->setAccount(pAccount);
 				}
 			}
 		}
@@ -285,7 +284,7 @@ void Bank::account_association_menu() {
 	// Adds new transaction to transaction text file
 	fstream newAssociation;
 	newAssociation.open("account_association.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-	newAssociation << customerNumber << " " << accountNumber << endl;
+	newAssociation << endl << customerNumber << " " << accountNumber;
 	newAssociation.close();
 	main_menu();
 }
