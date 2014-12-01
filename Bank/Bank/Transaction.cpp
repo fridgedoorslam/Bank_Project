@@ -39,6 +39,8 @@ void Transaction::setInfo(string Info) { info = Info; }
 
 
 //Operators
+
+//Input Operator
 istream& operator>>(istream& input, vector<Transaction*>& vector) {
 	int account;
 	string type, info;
@@ -52,6 +54,7 @@ istream& operator>>(istream& input, vector<Transaction*>& vector) {
 	return input;
 }
 
+//Output Operator
 ostream& operator<<(ostream& output, const Transaction& transaction) {
 	output << transaction.getDate();
 	if (transaction.getType() == "d") {
@@ -63,6 +66,7 @@ ostream& operator<<(ostream& output, const Transaction& transaction) {
 	return output;
 }
 
+//Less than Operator
 bool Transaction::operator<(const Transaction& transaction) const {
 	if (getDate() < transaction.getDate()) { return true; }
 	else if (getDate() == transaction.getDate() && getType() == "d") { return true; }
