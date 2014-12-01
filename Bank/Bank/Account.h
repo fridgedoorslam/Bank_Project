@@ -20,7 +20,7 @@ public:
 	int getNumber() const;
 	double getBalance();
 	Date getDate() const;
-	const std::vector<Transaction*>& getTransactions() const; //Changed to const for iter
+	std::vector<Transaction*>& getTransactions(); //Changed to const for iter
 	std::vector<Customer*> getOwners();
 
 	//Setters
