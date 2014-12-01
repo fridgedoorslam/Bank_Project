@@ -45,6 +45,7 @@ istream& operator>>(istream& INPUT, vector<Customer*>& vector) {
 	int new_id, new_ssn;
 	string new_first, new_last, new_address;
 	INPUT >> new_id >> new_ssn >> new_first >> new_last;
+	INPUT >> std::ws;
 	getline(INPUT, new_address);
 	Customer* new_customer = new Customer(new_id, new_ssn, new_first, new_last, new_address);
 	vector.push_back(new_customer);

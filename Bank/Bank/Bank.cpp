@@ -110,7 +110,9 @@ void Bank::readAssociation() {
 	}
 }
 
+
 //Menu Functions
+
 //Main Menu
 void Bank::main_menu() {
 	cout << "--Main Menu--" << endl;
@@ -250,6 +252,7 @@ void Bank::account_input_menu() {
 	}
 }
 
+//Associate accounts
 void Bank::account_association_menu() {
 	int customerNumber, accountNumber;
 	vector<Customer*>::const_iterator customer_iter;
@@ -298,7 +301,7 @@ void Bank::customer_info_menu() {
 		iter != pCustomers.end(); ++iter) {
 		// We could probably overload an operator for this long bit
 		cout << (*iter)->getId() << " " << (*iter)->getSocial() << " " <<
-			(*iter)->getFirst() << " " << (*iter)->getLast() << (*iter)->getAddress() << endl;
+			(*iter)->getFirst() << " " << (*iter)->getLast() << " " << (*iter)->getAddress() << endl;
 		/*
 		for (account_iter = (*iter)->getAccounts().begin();
 			account_iter != (*iter)->getAccounts().end(); ++account_iter) {
