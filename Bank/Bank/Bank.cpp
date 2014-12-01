@@ -110,21 +110,18 @@ void Bank::readAssociation() {
 	}
 }
 
-
-
 //Menu Functions
-
 //Main Menu
 void Bank::main_menu() {
 	cout << "--Main Menu--" << endl;
 	cout << "Enter 1 to add a new customer." << endl;
 	cout << "Enter 2 to add a new account." << endl;
 	cout << "Enter 3 to add a transaction to an existing account." << endl;
-	cout << "Enter 4 to view customer Information" << endl;
-	cout << "Enter 5 to print customer account statements" << endl;
-	cout << "Enter 6 to print total values of a certain account" << endl;
-	cout << "Enter 7 to associate account" << endl;
-	cout << "Enter 8 to view customer summaries" << endl;
+	cout << "Enter 4 to view customer information." << endl;
+	cout << "Enter 5 to associate accounts." << endl;
+	cout << "Enter 6 to print customer account statements." << endl;
+	cout << "Enter 7 to print total values of a certain account." << endl;
+	cout << "Enter 8 to print customers and their total value of their associated account(s)" << endl;
 	cout << "Enter 0 to exit application." << endl;
 	int option = get_input();
 	switch (option) {
@@ -138,12 +135,12 @@ void Bank::main_menu() {
 		transaction_input_menu();
 	case 4:
 		customer_info_menu();
-	case 5:
-		print_customer_statements();
-	case 6:
-		print_total();
-	case 7:
+	case 5: 
 		account_association_menu();
+	case 6:
+		print_customer_statements();
+	case 7:
+		print_total();
 	case 8:
 		customer_summary_menu();
 	}
@@ -163,7 +160,7 @@ void Bank::customer_input_menu() {
 	Customer* new_customer = new Customer(new_id, new_ssn, new_first, new_last, new_address);
 	pCustomers.push_back(new_customer);
 	
-	//Add to text file
+	// Adds new customer to customer text file
 	fstream newCustomer;
 	newCustomer.open("customer_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
 	newCustomer << endl << new_id << " " << new_ssn << " " << new_first << " " << new_last << " " << new_address;
@@ -196,14 +193,12 @@ void Bank::transaction_input_menu() {
 	cout << "Description: "; getline(cin, info); getline(cin, info);
 	Transaction* new_transaction = new Transaction(account, type, amount, date, info);
 	pTransactions.push_back(new_transaction);
-	std::fstream fs;
-	fs.open("transactions_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
 
-	fs << endl << account << " " << type <<" " << amount << " " << date << " " << info;
-
-	fs.close();
-
-
+	// Adds new transaction to transaction text file
+	fstream newTransaction;
+	newTransaction.open("transactions_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+	newTransaction << account << " " << type <<" " << amount << " " << date << " " << info << endl;
+	newTransaction.close();
 
 	//Loop through accounts and store transaction pointer into proper one
 	vector<Account*>::const_iterator account_iter;
@@ -237,7 +232,7 @@ void Bank::account_input_menu() {
 	Account* new_account = new Account(number, balance, date);
 	pAccounts.push_back(new_account);
 
-	//Add to text file
+	//Adds new account to account text file
 	fstream newAccount;
 	newAccount.open("accounts_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
 	newAccount << endl << number << " " << balance << " " << date;
@@ -253,6 +248,45 @@ void Bank::account_input_menu() {
 	case 1:
 		account_input_menu();
 	}
+}
+
+void Bank::account_association_menu() {
+	int customerNumber, accountNumber;
+	vector<Customer*>::const_iterator customer_iter;
+	vector<Account*>::const_iterator account_iter;
+	cout << "--Account Association Menu--" << endl << endl;
+	cout << "Enter Customer Number: ";
+	cin >> customerNumber;
+	cout << "Enter an Account Number: ";
+	cin >> accountNumber;
+	//Loop through customers and add pointer to owner vector of proper account
+	for (customer_iter = pCustomers.begin(); customer_iter != pCustomers.end(); ++customer_iter) {
+		if ((*customer_iter)->getId() == customerNumber) {
+			Customer* pCustomer = (*customer_iter);
+			for (account_iter = pAccounts.begin(); account_iter != pAccounts.end(); ++account_iter) {
+				if ((*account_iter)->getNumber() == customerNumber) {
+					(*account_iter)->setOwner(pCustomer);
+				}
+			}
+		}
+	}
+	//Loop through accounts and add pointer to account vector of proper customer
+	for (account_iter = pAccounts.begin(); account_iter != pAccounts.end(); ++account_iter) {
+		if ((*account_iter)->getNumber() == accountNumber) {
+			Account* pAccount = (*account_iter);
+			for (customer_iter = pCustomers.begin(); customer_iter != pCustomers.end(); ++customer_iter) {
+				if ((*customer_iter)->getId() == customerNumber) {
+					(*customer_iter)->setAccount(pAccount);
+				}
+			}
+		}
+	}
+	// Adds new transaction to transaction text file
+	fstream newAssociation;
+	newAssociation.open("account_association.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+	newAssociation << endl << customerNumber << " " << accountNumber;
+	newAssociation.close();
+	main_menu();
 }
 
 //Customer Info Menu
@@ -333,14 +367,28 @@ void Bank::print_total() {
 	cout << total << endl;
 	main_menu();
 }
-		
-void Bank::account_association_menu() {
 
-}
-
+// Prints customer name and the total value of their accounts
 void Bank::customer_summary_menu() {
-
+	cout << "--Customer Summary Menu--" << endl << endl;
+	vector<Account*>::const_iterator account_iter;
+	vector<Customer*>::const_iterator iter;
+	for (iter = pCustomers.begin();
+		iter != pCustomers.end(); ++iter) {
+		cout << (*iter)->getId() << " "  << (*iter)->getFirst() << " " << (*iter)->getLast() << endl;
+		for (account_iter = (*iter)->getAccounts().begin();
+		account_iter != (*iter)->getAccounts().end(); ++account_iter) {
+			double total = 0;
+			total += (*account_iter)->calculate_total();
+			cout << (*account_iter)->getNumber() << " " << total << endl;
+		}
+		
+	}
+	main_menu();
 }
+
+		
+
 //Other Functions
 
 //Get Input

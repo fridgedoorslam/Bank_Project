@@ -33,8 +33,8 @@ public:
 	void transaction_input_menu();
 	void customer_info_menu();
 	void print_customer_statements();
-	void print_total();
 	void account_association_menu();
+	void print_total();
 	void customer_summary_menu();
 
 private:
