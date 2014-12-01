@@ -35,23 +35,28 @@ void Date::setSlash(char SLASH){ slash = SLASH; }
 
 
 //Operators
+
+//Input Operator
 istream& operator >> (istream& input, Date& d) {
 	input >> d.month >> d.slash >> d.day >> d.slash >> d.year;
 	return input;
 }
 
+//Output Operator
 ostream& operator<<(ostream& output, const Date& d) {
 	output << d.getMonth() << d.getSlash() << d.getDay()
 		<< d.getSlash() << d.getYear();
 	return output;
 }
 
+//Equal Operator
 bool Date::operator==(const Date& date) const {
 	return ((getMonth() == date.getMonth()) &&
 		(getDay() == date.getDay()) &&
 		(getYear() == date.getYear()));
 }
 
+//Less than Operator
 bool Date::operator<(const Date& date) const {
 	if (getYear() < date.getYear()) {
 		return true;
@@ -73,28 +78,3 @@ bool Date::operator<(const Date& date) const {
 	}
 }
 
-bool compare(const Date& x, const Date&y) {
-	if (x.getYear() < y.getYear()) {
-		return true;
-	}
-	else if (x.getYear() == y.getYear()) {
-		if (x.getMonth() < y.getMonth()) {
-			return true;
-		}
-		else if (x.getMonth() == y.getMonth()) {
-			if (x.getDay() < y.getDay()) {
-				return true;
-			}
-		}
-	}
-	return false;
-}
-
-bool compareEqual(const Date& x, const Date& y) {
-	if (x.getYear() == y.getYear() && x.getMonth() == y.getMonth() && x.getDay() == y.getDay()) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
