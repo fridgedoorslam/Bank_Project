@@ -330,9 +330,9 @@ void Bank::print_customer_statements() {
 	cout << "--Print a Customer Statement--" << endl;
 	cout << "Enter Account Number: ";
 	cin >> account_number;
-	cout << "What Month? ";
+	cout << "What Month (XX)? ";
 	cin >> month;
-	cout << "What Year? ";
+	cout << "What Year (XXXX)? ";
 	cin >> year;
 	cout << endl << "--Statement from " << month << "/" << year << "--" << endl << endl;
 	vector<Account*>::const_iterator account_iter;
