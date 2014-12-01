@@ -123,7 +123,7 @@ void Bank::main_menu() {
 	cout << "Enter 5 to associate accounts." << endl;
 	cout << "Enter 6 to print customer account statements." << endl;
 	cout << "Enter 7 to print total values of a certain account." << endl;
-	cout << "Enter 8 to print customers and their total value of their associated account(s)" << endl;
+	cout << "Enter 8 to print customer totals." << endl;
 	cout << "Enter 0 to exit application." << endl;
 	int option = get_input();
 	switch (option) {
@@ -163,7 +163,7 @@ void Bank::customer_input_menu() {
 	Customer* new_customer = new Customer(new_id, new_ssn, new_first, new_last, new_address);
 	pCustomers.push_back(new_customer);
 	
-	// Adds new customer to customer text file
+	//Adds new customer to customer text file
 	fstream newCustomer;
 	newCustomer.open("customer_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
 	newCustomer << endl << new_id << " " << new_ssn << " " << new_first << " " << new_last << " " << new_address;
