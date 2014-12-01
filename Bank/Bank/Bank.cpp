@@ -149,6 +149,7 @@ void Bank::main_menu() {
 //Customer Input Menu
 void Bank::customer_input_menu() {
 	cout << "--Customer Input Menu--" << endl << endl;
+	cout << "This menu will allow you to add a new customer to the bank." << endl << endl;
 	int new_id, new_ssn;
 	string new_first, new_last, new_address;
 	cout << "First Name: "; cin >> new_first;
@@ -286,8 +287,19 @@ void Bank::account_association_menu() {
 	newAssociation.open("account_association.txt", std::fstream::in | std::fstream::out | std::fstream::app);
 	newAssociation << endl << customerNumber << " " << accountNumber;
 	newAssociation.close();
-	main_menu();
+
+	cout << endl << "Successfully associated customer number " << customerNumber << " with account number " << accountNumber  << "." << endl << endl;
+	cout << "Enter 1 to add another account." << endl;
+	cout << "Enter 0 to return to the main menu." << endl;
+	int option = get_input();
+	switch (option) {
+	case 0:
+		main_menu();
+	case 1:
+		account_association_menu();
+	}
 }
+
 
 //Customer Info Menu
 void Bank::customer_info_menu() {
@@ -345,8 +357,16 @@ void Bank::print_customer_statements() {
 			}
 		}
 	}
-	cout << endl;
-	main_menu();
+	cout << "--End of Statement--" << endl << endl;
+	cout << "Enter 1 to print another customer statement" << endl;
+	cout << "Enter 0 to return to the main menu." << endl;
+	int option = get_input();
+	switch (option) {
+	case 0:
+		main_menu();
+	case 1:
+		print_customer_statements();
+	}
 }
 
 //Print account totals
@@ -375,16 +395,25 @@ void Bank::customer_summary_menu() {
 	vector<Customer*>::const_iterator iter;
 	for (iter = pCustomers.begin();
 		iter != pCustomers.end(); ++iter) {
-		cout << (*iter)->getId() << " "  << (*iter)->getFirst() << " " << (*iter)->getLast() << endl;
+		cout << "Customer ID: " << (*iter)->getId() << " " << "Customer Name: "  << (*iter)->getFirst() << " " << (*iter)->getLast() << endl;
 		for (account_iter = (*iter)->getAccounts().begin();
 		account_iter != (*iter)->getAccounts().end(); ++account_iter) {
 			double total = 0;
 			total += (*account_iter)->calculate_total();
-			cout << (*account_iter)->getNumber() << " " << total << endl;
+			cout << "Account Number: " << (*account_iter)->getNumber() << " " << " Account Total: $" << total << endl << endl;
 		}
 		
 	}
-	main_menu();
+	cout << "--Customer Summary Complete--" << endl << endl;
+	cout << "Enter 1 to print the summary again." << endl;
+	cout << "Enter 0 to return to the main menu." << endl;
+	int option = get_input();
+	switch (option) {
+	case 0:
+		main_menu();
+	case 1:
+		customer_summary_menu();
+	}
 }
 
 		

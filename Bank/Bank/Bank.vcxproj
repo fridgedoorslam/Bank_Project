@@ -95,6 +95,7 @@
   <ItemGroup>
     <Text Include="accounts_input.txt" />
     <Text Include="account_association.txt" />
+    <Text Include="account_types.txt" />
     <Text Include="customer_input.txt" />
     <Text Include="transactions_input.txt" />
   </ItemGroup>
