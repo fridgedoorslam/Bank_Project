@@ -314,12 +314,6 @@ void Bank::customer_info_menu() {
 		// We could probably overload an operator for this long bit
 		cout << (*iter)->getId() << " " << (*iter)->getSocial() << " " <<
 			(*iter)->getFirst() << " " << (*iter)->getLast() << " " << (*iter)->getAddress() << endl;
-		/*
-		for (account_iter = (*iter)->getAccounts().begin();
-			account_iter != (*iter)->getAccounts().end(); ++account_iter) {
-			cout << (*account_iter) << endl;
-		}
-		*/
 	}
 	main_menu();
 }
