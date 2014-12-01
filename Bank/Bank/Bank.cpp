@@ -200,7 +200,7 @@ void Bank::transaction_input_menu() {
 	// Adds new transaction to transaction text file
 	fstream newTransaction;
 	newTransaction.open("transactions_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-	newTransaction << account << " " << type <<" " << amount << " " << date << " " << info << endl;
+	newTransaction << endl << account << " " << type <<" " << amount << " " << date << " " << info;
 	newTransaction.close();
 
 	//Loop through accounts and store transaction pointer into proper one

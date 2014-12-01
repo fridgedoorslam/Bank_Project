@@ -36,7 +36,7 @@ public:
 	//Functions
 	double calculate_total();
 
-private:
+protected:
 	int account_number;
 	double opening_balance;
 	Date opening_date;
