@@ -185,6 +185,7 @@ void Bank::customer_input_menu() {
 //Transaction Input Menu
 void Bank::transaction_input_menu() {
 	cout << "--Transaction Input Menu--" << endl << endl;
+	cout << "This menu will allow you to add a new transaction." << endl;
 	int account;
 	string type, info;
 	double amount;
@@ -211,7 +212,7 @@ void Bank::transaction_input_menu() {
 		}
 	}
 
-	cout << "Successfully added transaction." << endl;
+	cout << "--Successfully added transaction--" << endl;
 	cout << "Enter 1 to add another transaction." << endl;
 	cout << "Enter 0 to return to the main menu." << endl;
 	int option = get_input();
@@ -226,6 +227,7 @@ void Bank::transaction_input_menu() {
 //Account Input Menu
 void Bank::account_input_menu() {
 	cout << "--Account Input Menu--" << endl << endl;
+	cout << "This menu will allow you to create a new account with opening balance" << endl;
 	int number;
 	double balance;
 	Date date;
@@ -241,7 +243,7 @@ void Bank::account_input_menu() {
 	newAccount << endl << number << " " << balance << " " << date;
 	newAccount.close();
 
-	cout << "Successfully added account." << endl;
+	cout << "--Successfully added account--" << endl;
 	cout << "Enter 1 to add another account." << endl;
 	cout << "Enter 0 to return to the main menu." << endl;
 	int option = get_input();
@@ -259,6 +261,8 @@ void Bank::account_association_menu() {
 	vector<Customer*>::const_iterator customer_iter;
 	vector<Account*>::const_iterator account_iter;
 	cout << "--Account Association Menu--" << endl << endl;
+	cout << "This menu will allow you to create a customer" << endl;
+	cout << "number that is associated with given account number." << endl << endl;
 	cout << "Enter Customer Number: ";
 	cin >> customerNumber;
 	cout << "Enter an Account Number: ";
@@ -297,6 +301,7 @@ void Bank::account_association_menu() {
 	int option = get_input();
 	switch (option) {
 	case 0:
+		cout << endl;
 		main_menu();
 	case 1:
 		account_association_menu();
