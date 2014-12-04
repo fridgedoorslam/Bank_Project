@@ -13,6 +13,7 @@ class Customer;
 class Account
 {
 public:
+	Account();
 	//Constructor
 	Account(int, double, Date);
 
@@ -44,30 +45,7 @@ protected:
 	std::vector<Customer*> pOwners;
 };
 
-class Savings_Account : public Account {
-public:
-	//Constructor
-	//Savings_Account() : Account();
-
-private:
-	double interest_rate;
-};
-
-class Checking_Account : public Account {
-
-private:
-	double monthly_fee;
-	double overdraft_fee;
-};
-
-class CD_Account : public Account {
-
-private:
-	double interest_rate;
-	Date maturity_date;
-};
-
 //Sorting function to sort vector of transaction pointers
-bool sort_transactions(Transaction*, Transaction*);
+bool sort_transactions(Transaction*&, Transaction*&);
 
 #endif

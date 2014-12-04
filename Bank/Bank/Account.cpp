@@ -1,19 +1,12 @@
 #include "Account.h"
-
-//Default constructor
-
-//Base Account Constructor
+Account::Account(){};
+//Constructors
 Account::Account(int number, double balance, Date date) {
 	account_number = number;
 	opening_balance = balance;
 	opening_date = date;
 }
 
-/*
-Savings_Account(int number, double balance, Date date) : Account(number, balance, date) {
-	interest_rate = .05;
-}
-*/
 
 //Getters
 int Account::getNumber() const { return account_number; }
@@ -64,7 +57,7 @@ double Account::calculate_total() {
 	return total;
 }
 
-bool sort_transactions(Transaction* a, Transaction* b) {
+bool sort_transactions(Transaction*& a, Transaction*& b) {
 	if (a->getDate() < b->getDate()) {
 		return true;
 	}
