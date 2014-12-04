@@ -1,4 +1,7 @@
-#include "Account.h"
+#include "Checking_Account.h"
+#include "Savings_Account.h"
+#include "CD_Account.h"
+
 Account::Account(){};
 //Constructors
 Account::Account(int number, double balance, Date date) {
@@ -9,6 +12,8 @@ Account::Account(int number, double balance, Date date) {
 
 
 //Getters
+int Account::getType() const { return type; }
+
 int Account::getNumber() const { return account_number; }
 
 double Account::getBalance() { return opening_balance; }
@@ -20,6 +25,8 @@ Date Account::getDate() const { return opening_date; }
 vector<Transaction*>& Account::getTransactions() { return pTransactions; } //Changed to const for iter
 
 //Setters
+void Account::setType(int Type) { type = Type; }
+
 void Account::setNumber(int NUMBER) { account_number = NUMBER; }
 
 void Account::setBalance(double BALANCE) { opening_balance = BALANCE; }
@@ -32,12 +39,25 @@ void Account::setTransaction(Transaction* TRANSACTION){ pTransactions.push_back(
 
 //Operators
 istream& operator>>(istream& INPUT, vector<Account*>& vector) {
-	int number;
+	int type, number;
 	double balance;
 	Date date;
-	INPUT >> number >> balance >> date;
-	Account* new_account = new Account(number, balance, date);
-	vector.push_back(new_account);
+	INPUT >> type >> number >> balance >> date;
+	if (type == 1) {
+		Checking_Account* new_account = new Checking_Account(number, balance, date);
+		vector.push_back(new_account);
+	}
+	else if (type == 2) {
+		Savings_Account* new_account = new Savings_Account(number, balance, date);
+		vector.push_back(new_account);
+	}
+	else if (type == 3) {
+		double interest_rate;
+		Date maturity_date;
+		cin >> interest_rate >> maturity_date;
+		CD_Account* new_account = new CD_Account(number, balance, date, interest_rate, maturity_date);
+		vector.push_back(new_account);
+	}
 	return INPUT;
 }
 

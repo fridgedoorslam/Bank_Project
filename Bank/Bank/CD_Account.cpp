@@ -7,6 +7,7 @@ using namespace std;
 //Constructors
 CD_Account::CD_Account(int number, double balance, Date& date, double interestRate, Date& maturityDate) : Account(number, balance, date), interest_rate(interestRate), maturity_date(maturityDate)
 {
+	type = 3;
 	interest_rate = interestRate;
 	maturity_date = maturityDate;
 }

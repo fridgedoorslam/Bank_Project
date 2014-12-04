@@ -4,10 +4,11 @@
 
 using namespace std;
 
-Checking_Account::Checking_Account(int number, double balance, Date& date, double monthlyFee, double overdraftFee) : Account(number, balance, date), monthly_fee(monthlyFee), overdraft_fee(overdraftFee)
+Checking_Account::Checking_Account(int number, double balance, Date& date) : Account(number, balance, date)
 {
-	monthly_fee = monthlyFee;
-	overdraft_fee = overdraftFee;
+	type = 1;
+	monthly_fee = 5;
+	overdraft_fee = 10;
 }
 
 double Checking_Account::getMonthlyFee() { return monthly_fee; }
