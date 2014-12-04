@@ -1,13 +1,12 @@
 #include "Account.h"
-
-//Default constructor
-
-//Constructor
+Account::Account(){};
+//Constructors
 Account::Account(int number, double balance, Date date) {
 	account_number = number;
 	opening_balance = balance;
 	opening_date = date;
 }
+
 
 //Getters
 int Account::getNumber() const { return account_number; }
