@@ -15,7 +15,7 @@ CD_Account::CD_Account(int number, double balance, Date& date, double interestRa
 //Getters
 double CD_Account::getInterest() const { return interest_rate; }
 
-Date& CD_Account::getDate() const { return maturity_date; }
+Date& CD_Account::getMaturityDate() const { return maturity_date; }
 
 //Setters
 void CD_Account::setInterest(double interestRate) { interest_rate = interestRate;  }

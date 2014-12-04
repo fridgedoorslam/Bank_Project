@@ -10,7 +10,7 @@ public:
 
 	//Getters
 	double getInterest() const;
-	Date& getDate() const;
+	Date& getMaturityDate() const;
 
 	//Setters
 	void setInterest(double);
