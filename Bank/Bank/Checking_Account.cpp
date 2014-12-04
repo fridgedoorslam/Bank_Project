@@ -10,3 +10,5 @@ Checking_Account::Checking_Account(int number, double balance, Date& date, doubl
 	overdraft_fee = overdraftFee;
 }
 
+double Checking_Account::getMonthlyFee() { return monthly_fee; }
+double Checking_Account::getOverdraftFee() { return overdraft_fee; }

@@ -6,6 +6,8 @@
 class Checking_Account : public Account {
 public:
 	Checking_Account(int, double, Date&, double, double);
+	double getMonthlyFee();
+	double getOverdraftFee();
 private:
 	double monthly_fee;
 	double overdraft_fee;
