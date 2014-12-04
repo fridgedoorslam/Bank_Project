@@ -54,7 +54,7 @@ istream& operator>>(istream& INPUT, vector<Account*>& vector) {
 	else if (type == 3) {
 		double interest_rate;
 		Date maturity_date;
-		cin >> interest_rate >> maturity_date;
+		INPUT >> interest_rate >> maturity_date;
 		CD_Account* new_account = new CD_Account(number, balance, date, interest_rate, maturity_date);
 		vector.push_back(new_account);
 	}
