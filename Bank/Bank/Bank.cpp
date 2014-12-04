@@ -10,6 +10,8 @@ const vector<Account*>& Bank::getAccounts() const { return pAccounts; } //Change
 
 const vector<Transaction*>& Bank::getTransactions() const { return pTransactions; }
 
+Date Bank::getCurrentDate() { return current_date; }
+
 //Setters
 void Bank::setCustomer(Customer* Customer) { pCustomers.push_back(Customer); }
 
@@ -17,6 +19,7 @@ void Bank::setAccount(Account* Account) { pAccounts.push_back(Account); }
 
 void Bank::setTransaction(Transaction* Transaction){ pTransactions.push_back(Transaction); }
 
+void Bank::setCurrentDate(Date currentDate) { current_date = currentDate; }
 
 //File Reading Functions
 
