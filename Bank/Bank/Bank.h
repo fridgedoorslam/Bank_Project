@@ -13,11 +13,13 @@ public:
 	const std::vector<Customer*>& getCustomers() const; //Changed to const for iter
 	const std::vector<Account*>& getAccounts() const; //Changed to const for iter
 	const std::vector<Transaction*>& getTransactions() const; //Changed to const for iter
+	Date getCurrentDate();
 
 	//Setters
 	void setCustomer(Customer*);
 	void setAccount(Account*);
 	void setTransaction(Transaction*);
+	void setCurrentDate(Date);
 
 	//Read Functions
 	void readCustomers();
@@ -36,8 +38,10 @@ public:
 	void account_association_menu();
 	void print_total();
 	void customer_summary_menu();
+	
 
 private:
+	Date current_date;
 	std::vector<Customer*> pCustomers;
 	std::vector<Account*> pAccounts;
 	std::vector<Transaction*> pTransactions;
