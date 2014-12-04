@@ -36,10 +36,10 @@
     <ClCompile Include="Savings_Account.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Checking_Account.cpp">
+    <ClCompile Include="CD_Account.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CD_Account.cpp">
+    <ClCompile Include="Checking_Account.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
