@@ -46,7 +46,8 @@ protected:
 
 class Savings_Account : public Account {
 public:
-	Savings_Account();
+	//Constructor
+	//Savings_Account() : Account();
 
 private:
 	double interest_rate;
@@ -67,6 +68,6 @@ private:
 };
 
 //Sorting function to sort vector of transaction pointers
-bool sort_transactions(Transaction*&, Transaction*&);
+bool sort_transactions(Transaction*, Transaction*);
 
 #endif
