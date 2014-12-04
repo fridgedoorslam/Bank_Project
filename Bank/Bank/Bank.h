@@ -9,6 +9,9 @@
 class Bank
 {
 public:
+	//Constructor
+	Bank(Date);
+
 	//Getters
 	const std::vector<Customer*>& getCustomers() const; //Changed to const for iter
 	const std::vector<Account*>& getAccounts() const; //Changed to const for iter

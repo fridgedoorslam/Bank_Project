@@ -3,6 +3,11 @@
 #include <iostream>
 #include <iomanip>
 
+//Constructor
+Bank::Bank(Date date) {
+	current_date = date;
+}
+
 //Getters
 const vector<Customer*>& Bank::getCustomers() const { return pCustomers; } //Changed to const for iter
 

@@ -8,7 +8,13 @@
 #include "CD_Account.h"
 
 int main() {
-	Bank bank = Bank();
+	Date current_date;
+	cout << "What is today's date? ";
+	cin >> current_date;
+	cout << endl << endl;
+
+
+	Bank bank = Bank(current_date);
 
 	//Read text files
 	bank.readCustomers();
