@@ -377,8 +377,8 @@ void Bank::print_total() {
 	int account_type;
 	double total = 0;
 	cout << "--Print Total Values--" << endl;
-	cout << "Enter 1 for Saving Accounts" << endl;
-	cout << "Enter 2 for Checking Accounts" << endl;
+	cout << "Enter 1 for Checking Accounts" << endl;
+	cout << "Enter 2 for Savings Accounts" << endl;
 	cout << "Enter 3 for CD Accounts" << endl;
 	cin >> account_type;
 	vector<Account*>::const_iterator account_iter;
