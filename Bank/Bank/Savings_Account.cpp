@@ -6,12 +6,10 @@ using namespace std;
 
 Savings_Account::Savings_Account(){};
 
-Savings_Account::Savings_Account(int number, double balance, Date& date, double interestRate) : Account(number, balance, date), interest_rate(interestRate)
+Savings_Account::Savings_Account(int number, double balance, Date& date) : Account(number, balance, date)
 {
-	interest_rate = interestRate;
+	type = 2;
+	interest_rate = 0.01;
 }
 
 double Savings_Account::getInterestRate() {return interest_rate;}
-
-
-

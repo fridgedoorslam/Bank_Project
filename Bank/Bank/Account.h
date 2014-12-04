@@ -18,6 +18,7 @@ public:
 	Account(int, double, Date);
 
 	//Getters
+	int getType() const;
 	int getNumber() const;
 	double getBalance();
 	Date getDate() const;
@@ -25,6 +26,7 @@ public:
 	std::vector<Customer*> getOwners();
 
 	//Setters
+	void setType(int);
 	void setNumber(int);
 	void setBalance(double);
 	void setOwner(Customer*);
@@ -38,6 +40,7 @@ public:
 	double calculate_total();
 
 protected:
+	int type;
 	int account_number;
 	double opening_balance;
 	Date opening_date;
