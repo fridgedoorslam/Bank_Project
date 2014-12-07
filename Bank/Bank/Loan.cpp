@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Loan.h"
 #include "Account.h"
 
@@ -7,7 +6,7 @@ using namespace std;
 //Constructors
 Loan::Loan(int number, double balance, Date& date, double interestRate) : Account(number, balance, date), interest_rate(interestRate)
 {
-	type = 3;
+	type = 4;
 	interest_rate = interestRate;
 
 }
