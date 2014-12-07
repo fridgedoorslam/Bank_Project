@@ -6,9 +6,7 @@
 #include "Transaction.h"
 #include "Date.h"
 
-
 class Customer;
-
 
 class Account
 {
@@ -50,6 +48,6 @@ protected:
 };
 
 //Sorting function to sort vector of transaction pointers
-bool sort_transactions(Transaction*&, Transaction*&);
+bool sort_transactions(Transaction*, Transaction*);
 
 #endif

@@ -1,6 +1,5 @@
 #include "Bank.h"
 
-
 //Getters
 const vector<Customer*>& Bank::getCustomers() const { return pCustomers; } //Changed to const for iter
 
@@ -111,7 +110,6 @@ void Bank::readAssociation() {
 	}
 }
 
-
 //Calculation Functions
 void Bank::calculateFees() {
 	vector<Account*>::const_iterator account_iter;
@@ -152,7 +150,6 @@ void Bank::calculateInterest() {
 		}
 	}
 }
-
 
 //Menu Functions
 
@@ -475,8 +472,6 @@ void Bank::customer_summary_menu() {
 		customer_summary_menu();
 	}
 }
-
-		
 
 //Other Functions
 
