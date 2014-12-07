@@ -439,7 +439,10 @@ void Bank::print_total() {
 	vector<Transaction*>::const_iterator transaction_iter;
 	for (account_iter = pAccounts.begin();
 		account_iter != pAccounts.end(); ++account_iter) {
-		total += (*account_iter)->calculate_total();
+		if ((*account_iter)->getType() == account_type) {
+			total += (*account_iter)->calculate_total();
+		}
+		
 	}
 	cout << total << endl;
 	main_menu();
