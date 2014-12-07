@@ -80,7 +80,7 @@ double Account::calculate_total() {
 int Account::calculate_months(const Date& todays_date, const Date& opening_date) {
 	int months = ((todays_date.getYear() - opening_date.getYear()) * 12) +
 		(todays_date.getMonth() - opening_date.getMonth());
-	cout << months;
+	cout << months << endl;
 	return months;
 }
 

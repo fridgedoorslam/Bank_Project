@@ -119,6 +119,25 @@ void Bank::readAssociation() {
 }
 
 
+//Calculation Functions
+void Bank::calculateFees() {
+	vector<Account*>::const_iterator account_iter;
+	for (account_iter = pAccounts.begin(); account_iter != pAccounts.end(); ++account_iter) {
+		if ((*account_iter)->getType() == 1) {
+			int months = (*account_iter)->calculate_months(current_date, (*account_iter)->getDate());
+			int year = (*account_iter)->getDate().getYear();
+			int month = (*account_iter)->getDate().getMonth();
+			for (int i = 0; i < months; i++) {
+				Date fee_date = Date(1, month, year, '/');
+				Transaction* new_transaction = new Transaction((*account_iter)->getNumber(), "w", 5.00, fee_date, "Account Fee");
+				(*account_iter)->setTransaction(new_transaction);
+				if (month == 12) { month = 1; year += 1; }
+				else { month += 1; }
+			}
+		}
+	}
+}
+
 //Menu Functions
 
 //Main Menu

@@ -30,6 +30,9 @@ public:
 	void readTransactions();
 	void readAssociation();
 
+	//Calculation Functions
+	void calculateFees();
+
 	//Creation Functions
 	void main_menu();
 	int get_input();

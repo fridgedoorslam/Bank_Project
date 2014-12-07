@@ -27,6 +27,9 @@ int main() {
 	bank.readTransactions();
 	bank.readAssociation();
 
+	//Run calculation functions
+	bank.calculateFees();
+
 	//Display main menu
 	bank.main_menu();
 	return 0;
