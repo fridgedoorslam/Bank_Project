@@ -143,7 +143,7 @@ void Bank::calculateInterest() {
 				Date interest_date = Date(day, month, year, '/');
 				//Hard coding this shit, change it later
 				double interest = (*account_iter)->calculate_total() * (0.03 / 12);
-				Transaction* new_transaction = new Transaction((*account_iter)->getNumber(), "w", interest, interest_date, "Monthly Interest");
+				Transaction* new_transaction = new Transaction((*account_iter)->getNumber(), "d", interest, interest_date, "Monthly Interest");
 				(*account_iter)->setTransaction(new_transaction);
 				if (month == 12) { month = 1; year += 1; }
 				else { month += 1; }
