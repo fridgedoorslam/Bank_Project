@@ -121,7 +121,8 @@ void Bank::calculateFees() {
 			int year = (*account_iter)->getDate().getYear();
 			int month = (*account_iter)->getDate().getMonth();
 			for (int i = 0; i < months; i++) {
-				Date fee_date = Date(1, month, year, '/');
+				int day = calculateDays(month);
+				Date fee_date = Date(day, month, year, '/');
 				Transaction* new_transaction = new Transaction((*account_iter)->getNumber(), "w", 5.00, fee_date, "Account Fee");
 				(*account_iter)->setTransaction(new_transaction);
 				if (month == 12) { month = 1; year += 1; }
