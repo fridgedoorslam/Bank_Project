@@ -82,8 +82,5 @@
     <Text Include="account_association.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="account_types.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
   </ItemGroup>
 </Project>
