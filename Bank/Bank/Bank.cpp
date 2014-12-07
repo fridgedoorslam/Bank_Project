@@ -1,12 +1,5 @@
 #include "Bank.h"
-#include <fstream>
-#include <iostream>
-#include <iomanip>
 
-//Constructor
-Bank::Bank(Date date) {
-	current_date = date;
-}
 
 //Getters
 const vector<Customer*>& Bank::getCustomers() const { return pCustomers; } //Changed to const for iter
@@ -138,7 +131,41 @@ void Bank::calculateFees() {
 	}
 }
 
+void Bank::calculateInterest() {
+	vector<Account*>::const_iterator account_iter;
+	for (account_iter = pAccounts.begin(); account_iter != pAccounts.end(); ++account_iter) {
+		if (((*account_iter)->getType() == 2) || ((*account_iter)->getType() == 3)) {
+			int months = (*account_iter)->calculate_months(current_date, (*account_iter)->getDate());
+			int year = (*account_iter)->getDate().getYear();
+			int month = (*account_iter)->getDate().getMonth();
+			for (int i = 0; i < months; i++) {
+				int day = calculateDays(month);
+				Date interest_date = Date(day, month, year, '/');
+				//Hard coding this shit, change it later
+				double interest = (*account_iter)->calculate_total() * (0.03 / 12);
+				Transaction* new_transaction = new Transaction((*account_iter)->getNumber(), "w", interest, interest_date, "Monthly Interest");
+				(*account_iter)->setTransaction(new_transaction);
+				if (month == 12) { month = 1; year += 1; }
+				else { month += 1; }
+			}
+		}
+	}
+}
+
+
 //Menu Functions
+
+void Bank::welcome_menu() {
+	time_t t = time(NULL);
+	tm* timePtr = localtime(&t);
+	int month = timePtr->tm_mon + 1;
+	int year = timePtr->tm_year + 1900;
+	int day = timePtr->tm_mday;
+	Date System_Date = Date(day, month, year, '/');
+	current_date = System_Date;
+	cout << "--Welcome to Boner Incorporated Banking System--" << endl;
+	cout << "Today's date is " << current_date << endl << endl;
+}
 
 //Main Menu
 void Bank::main_menu() {

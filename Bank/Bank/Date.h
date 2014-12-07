@@ -2,6 +2,7 @@
 #define Date_h
 
 #include <iostream>
+#include <cmath>
 #include <vector>
 #include <string>
 
@@ -38,5 +39,7 @@ private:
 	int day, month, year;
 	char slash;
 };
+
+int calculateDays(int);
 
 #endif

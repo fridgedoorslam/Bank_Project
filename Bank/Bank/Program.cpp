@@ -12,16 +12,12 @@
 #include <iomanip>
 
 int main() {
+	cout << setprecision(2) << fixed;
 
-
-	Date current_date;
-	cout << "What is today's date: ";
-	cin >> current_date;
-	cout << endl << endl;
-
-	Bank bank = Bank(current_date);
+	Bank bank = Bank();
 
 	//Read text files
+	bank.welcome_menu();
 	bank.readCustomers();
 	bank.readAccounts();
 	bank.readTransactions();
@@ -29,6 +25,7 @@ int main() {
 
 	//Run calculation functions
 	bank.calculateFees();
+	bank.calculateInterest();
 
 	//Display main menu
 	bank.main_menu();

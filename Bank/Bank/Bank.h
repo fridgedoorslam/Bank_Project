@@ -4,13 +4,15 @@
 #include "Account.h"
 #include "Customer.h"
 #include <vector>
+#include <time.h>
+#include <fstream>
+#include <iostream>
+#include <iomanip>
 
 
 class Bank
 {
 public:
-	//Constructor
-	Bank(Date);
 
 	//Getters
 	const std::vector<Customer*>& getCustomers() const; //Changed to const for iter
@@ -32,8 +34,10 @@ public:
 
 	//Calculation Functions
 	void calculateFees();
+	void calculateInterest();
 
 	//Creation Functions
+	void welcome_menu();
 	void main_menu();
 	int get_input();
 	void customer_input_menu();

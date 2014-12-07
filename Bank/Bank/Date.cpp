@@ -78,3 +78,8 @@ bool Date::operator<(const Date& date) const {
 	}
 }
 
+//Functions
+
+int calculateDays(int month) {
+	return (int)(28 + (month + (int)floor(month / 8)) % 2 + 2 % month + 2 * floor(1 / month));
+}
