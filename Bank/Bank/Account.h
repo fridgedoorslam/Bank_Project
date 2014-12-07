@@ -38,6 +38,7 @@ public:
 	
 	//Functions
 	double calculate_total();
+	int calculate_months(const Date&, const Date&);
 
 protected:
 	int type;
