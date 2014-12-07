@@ -9,7 +9,6 @@
 #include <iostream>
 #include <iomanip>
 
-
 class Bank
 {
 public:
@@ -49,7 +48,6 @@ public:
 	void print_total();
 	void customer_summary_menu();
 	
-
 private:
 	Date current_date;
 	std::vector<Customer*> pCustomers;

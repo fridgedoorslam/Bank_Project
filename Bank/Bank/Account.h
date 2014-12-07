@@ -6,9 +6,7 @@
 #include "Transaction.h"
 #include "Date.h"
 
-
 class Customer;
-
 
 class Account
 {
