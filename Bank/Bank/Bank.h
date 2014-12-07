@@ -2,12 +2,17 @@
 #define Bank_h
 
 #include "Account.h"
+#include "Checking_Account.h"
+#include "Savings_Account.h"
+#include "CD_Account.h"
 #include "Customer.h"
 #include <vector>
 #include <time.h>
 #include <fstream>
 #include <iostream>
 #include <iomanip>
+
+using namespace std;
 
 class Bank
 {

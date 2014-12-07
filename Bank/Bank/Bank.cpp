@@ -280,20 +280,50 @@ void Bank::transaction_input_menu() {
 void Bank::account_input_menu() {
 	cout << "--Account Input Menu--" << endl << endl;
 	cout << "This menu will allow you to create a new account with opening balance" << endl;
+	//Variables
 	int number;
+	int type;
 	double balance;
+	double interestRate = 0.03;
 	Date date;
-	cout << "Account Number: "; cin >> number;
-	cout << "Opening Balance: "; cin >> balance;
-	cout << "Date: "; cin >> date;
-	Account* new_account = new Account(number, balance, date);
-	pAccounts.push_back(new_account);
-
-	//Adds new account to account text file
-	fstream newAccount;
-	newAccount.open("accounts_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-	newAccount << endl << number << " " << balance << " " << date;
-	newAccount.close();
+	cout << "Please enter the type of account you would like." << endl;
+	cout << "	1. Checking" << endl;
+	cout << "	2. Savings" << endl;
+	cout << "	3. Certificate Deposit" << endl << endl;
+	cin >> type;
+	cout << "Please Enter New Account Number: "; cin >> number;
+	cout << "Please Enter Opening Balance: "; cin >> balance;
+	cout << "Please Enter Opening Date: "; cin >> date;
+	if (type == 1) {
+		Checking_Account* new_account = new Checking_Account(number, balance, date);
+		pAccounts.push_back(new_account);
+		//Adds new account to account text file
+		fstream newAccount;
+		newAccount.open("accounts_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+		newAccount << endl << type << " " << number << " " << balance << " " << date;
+		newAccount.close();
+	}
+	else if (type == 2){
+		Savings_Account* new_account = new Savings_Account(number, balance, date);
+		pAccounts.push_back(new_account);
+		//Adds new account to account text file
+		fstream newAccount;
+		newAccount.open("accounts_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+		newAccount << endl << type << " " << number << " " << balance << " " << date;
+		newAccount.close();
+	}
+	else if (type == 3) {
+		Date maturityDate;
+		cout << "What is the maturity date? " << endl;
+		cin >> maturityDate;
+		CD_Account* new_account = new CD_Account(number, balance, date, interestRate, maturityDate);
+		pAccounts.push_back(new_account);
+		//Adds new account to account text file
+		fstream newAccount;
+		newAccount.open("accounts_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+		newAccount << endl << type << " " << number << " " << balance << " " << date << " " << interestRate << " " << maturityDate;
+		newAccount.close();
+	}
 
 	cout << "--Successfully added account--" << endl;
 	cout << "Enter 1 to add another account." << endl;
