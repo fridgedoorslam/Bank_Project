@@ -83,7 +83,7 @@ int Account::calculate_months(const Date& todays_date, const Date& opening_date)
 	return months;
 }
 
-bool sort_transactions(Transaction*& a, Transaction*& b) {
+bool sort_transactions(Transaction* a, Transaction* b) {
 	if (a->getDate() < b->getDate()) {
 		return true;
 	}

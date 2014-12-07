@@ -50,6 +50,6 @@ protected:
 };
 
 //Sorting function to sort vector of transaction pointers
-bool sort_transactions(Transaction*&, Transaction*&);
+bool sort_transactions(Transaction*, Transaction*);
 
 #endif
