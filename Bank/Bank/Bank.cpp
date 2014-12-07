@@ -285,7 +285,7 @@ void Bank::account_input_menu() {
 	int type;
 	double balance;
 	double interestRate = 0.03;
-	Date date;
+	Date date = current_date;
 	cout << "Please enter the type of account you would like." << endl;
 	cout << "	1. Checking" << endl;
 	cout << "	2. Savings" << endl;
@@ -293,7 +293,6 @@ void Bank::account_input_menu() {
 	cin >> type;
 	cout << "Please Enter New Account Number: "; cin >> number;
 	cout << "Please Enter Opening Balance: "; cin >> balance;
-	cout << "Please Enter Opening Date: "; cin >> date;
 	if (type == 1) {
 		Checking_Account* new_account = new Checking_Account(number, balance, date);
 		pAccounts.push_back(new_account);
