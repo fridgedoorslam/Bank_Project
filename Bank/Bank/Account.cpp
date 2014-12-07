@@ -35,7 +35,7 @@ void Account::setOwner(Customer* OWNER) { pOwners.push_back(OWNER); }
 
 void Account::setDate(Date DATE) { opening_date = DATE; }
 
-void Account::setTransaction(Transaction* TRANSACTION){ pTransactions.push_back(TRANSACTION); }
+void Account::setTransaction(Transaction* TRANSACTION) { pTransactions.push_back(TRANSACTION); }
 
 //Operators
 istream& operator>>(istream& INPUT, vector<Account*>& vector) {
@@ -75,6 +75,13 @@ double Account::calculate_total() {
 		}
 	}
 	return total;
+}
+
+int Account::calculate_months(const Date& todays_date, const Date& opening_date) {
+	int months = ((todays_date.getYear() - opening_date.getYear()) * 12) +
+		(todays_date.getMonth() - opening_date.getMonth());
+	cout << months;
+	return months;
 }
 
 bool sort_transactions(Transaction*& a, Transaction*& b) {
