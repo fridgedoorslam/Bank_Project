@@ -472,6 +472,7 @@ void Bank::print_total() {
 	cout << "Enter 1 for Checking Accounts" << endl;
 	cout << "Enter 2 for Savings Accounts" << endl;
 	cout << "Enter 3 for CD Accounts" << endl;
+	cout << "Enter 4 for Loan Accounts" << endl;
 	cin >> account_type;
 	vector<Account*>::const_iterator account_iter;
 	vector<Transaction*>::const_iterator transaction_iter;
