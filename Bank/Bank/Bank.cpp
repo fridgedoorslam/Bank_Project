@@ -289,7 +289,8 @@ void Bank::account_input_menu() {
 	cout << "Please enter the type of account you would like." << endl;
 	cout << "	1. Checking" << endl;
 	cout << "	2. Savings" << endl;
-	cout << "	3. Certificate Deposit" << endl << endl;
+	cout << "	3. Certificate Deposit" << endl;
+	cout << "   4. Loan" << endl << endl;
 	cin >> type;
 	cout << "Please Enter New Account Number: "; cin >> number;
 	cout << "Please Enter Opening Balance: "; cin >> balance;
@@ -321,6 +322,16 @@ void Bank::account_input_menu() {
 		fstream newAccount;
 		newAccount.open("accounts_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
 		newAccount << endl << type << " " << number << " " << balance << " " << date << " " << interestRate << " " << maturityDate;
+		newAccount.close();
+	}
+	else if (type == 4) {
+		balance = balance * -1;
+		Loan* new_account = new Loan(number, balance, date, interestRate);
+		pAccounts.push_back(new_account);
+		//Adds new account to account text file
+		fstream newAccount;
+		newAccount.open("accounts_input.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+		newAccount << endl << type << " " << number << " " << balance << " " << date << " " << interestRate << " ";
 		newAccount.close();
 	}
 

@@ -1,6 +1,7 @@
 #include "Checking_Account.h"
 #include "Savings_Account.h"
 #include "CD_Account.h"
+#include "Loan.h"
 
 Account::Account(){};
 //Constructors
@@ -56,6 +57,12 @@ istream& operator>>(istream& INPUT, vector<Account*>& vector) {
 		Date maturity_date;
 		INPUT >> interest_rate >> maturity_date;
 		CD_Account* new_account = new CD_Account(number, balance, date, interest_rate, maturity_date);
+		vector.push_back(new_account);
+	}
+	else if (type == 4) {
+		double interest_rate;
+		INPUT >> interest_rate;
+		Loan* new_account = new Loan(number, balance, date, interest_rate);
 		vector.push_back(new_account);
 	}
 	return INPUT;

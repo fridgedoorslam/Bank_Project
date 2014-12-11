@@ -6,6 +6,7 @@
 #include "Savings_Account.h"
 #include "CD_Account.h"
 #include "Customer.h"
+#include "Loan.h"
 #include <vector>
 #include <time.h>
 #include <fstream>
