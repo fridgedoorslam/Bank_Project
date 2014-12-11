@@ -133,7 +133,7 @@ void Bank::calculateFees() {
 void Bank::calculateInterest() {
 	vector<Account*>::const_iterator account_iter;
 	for (account_iter = pAccounts.begin(); account_iter != pAccounts.end(); ++account_iter) {
-		if (((*account_iter)->getType() == 2) || ((*account_iter)->getType() == 3)) {
+		if (((*account_iter)->getType() == 2) || ((*account_iter)->getType() == 3) || ((*account_iter)->getType() == 4)) {
 			int months = (*account_iter)->calculate_months(current_date, (*account_iter)->getDate());
 			int year = (*account_iter)->getDate().getYear();
 			int month = (*account_iter)->getDate().getMonth();
